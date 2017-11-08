@@ -14,8 +14,20 @@ namespace WindowsFormsApp1
         private float imageXSize, imageYSize;
         private float windowXSize, windowYSize;
 
-        public CardFlowLayoutPanel() {
+        public CardFlowLayoutPanel(float containerXSize, float containerYSize, string pieceName, string commissionerName, string imgURL) {
+            cardImage = new PictureBox();
+            piece = new Label();
+            commissioner = new Label();
+
+            cardImage.Size = new System.Drawing.Size (160, 160);
+            piece.Size = new System.Drawing.Size (40, 160);
+            commissioner.Size = new System.Drawing.Size (40, 160);
+
+            cardImage.Image = new Image.FromFile(imgURL);
+            piece.Text = pieceName;
+            commissioner.Text = commissionerName;
             
+            base();
         }
 
         // In cases of the parent form resizing, we must resize ourselves.
