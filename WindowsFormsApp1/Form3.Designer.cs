@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApp1
 {
-    partial class Form3
+    partial class cardCreationForm
     {
         /// <summary>
         /// Required designer variable.
@@ -71,7 +71,6 @@
             this.label1.Size = new System.Drawing.Size(30, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Artist";
-            
             // 
             // label2
             // 
@@ -81,7 +80,6 @@
             this.label2.Size = new System.Drawing.Size(71, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "Commissioner";
-            
             // 
             // label3
             // 
@@ -161,7 +159,7 @@
             this.priceBox.Size = new System.Drawing.Size(120, 20);
             this.priceBox.TabIndex = 16;
             // 
-            // Form3
+            // cardCreationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -179,8 +177,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.createButton);
             this.Controls.Add(this.artistBox);
-            this.Name = "Form3";
-            this.Text = "Form3";
+            this.Name = "cardCreationForm";
+            this.Text = "Card Creation";
             ((System.ComponentModel.ISupportInitialize)(this.priorityBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.positionBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceBox)).EndInit();
