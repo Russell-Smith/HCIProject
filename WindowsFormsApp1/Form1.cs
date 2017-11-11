@@ -41,5 +41,6 @@ namespace WindowsFormsApp1
             base.OnResize(e);
 
         }
+
     }
 }

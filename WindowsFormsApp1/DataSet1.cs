@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace WindowsFormsApp1 {
     
@@ -14,7 +15,7 @@ namespace WindowsFormsApp1 {
         //constructs them in UI as well
     public class QueueManager
     {
-
+        //add, bindarySearch, removeAt are possibly needed methods
         
         //when a card is removed, remove the bottom UI card and shift all info up.
         List <QueueCard> queue1 = new List<QueueCard>(); //high queue priority
@@ -26,9 +27,24 @@ namespace WindowsFormsApp1 {
         //the class that creates and maintains the cards information.
     public class QueueCard
     {
-        string artistName, comissionerName, note;
-        int queuePriority, queuePoisition, complexity;
-        float price;
+        public string artistName, comissionerName, note;
+        public int queuePriority, queuePoisition, complexity;
+        public float price;
+
+        //image reference here
+        public QueueCard createCard()
+        {
+            this.artistName =
+            this.commissionerName =
+            this.note =
+
+            this.queuePriority = 
+            this.queuePosition = 
+            this.complexity = 
+            this.price =
+
+            return this;
+        }
 
     }
 }
