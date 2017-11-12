@@ -85,7 +85,7 @@ namespace WindowsFormsApp1
     //used to create a file that stores all of the information held by the cards
     //Cards will always follow the following format:
     //[commissionerName] [pieceName] [imgRootDir] [note] [price] [priority] [initialPriority] 
-    //  [queuePosition] [completionCounter] [maxCompeltionCounter] \t\n
+    //  [queuePosition] [completionCounter] [maxCompletionCounter] \t\n
     public class CardFileFactory
     {
         static String CSONFile;
@@ -99,7 +99,7 @@ namespace WindowsFormsApp1
 
     //Cards will always follow the following format from the file:
     //[commissionerName] [pieceName] [imgRootDir] [note] [price] [priority] [initialPriority] 
-    //  [queuePosition] [completionCounter] [maxCompeltionCounter] \t\n
+    //  [queuePosition] [completionCounter] [maxCompletionCounter] \t\n
     public class CardFactory
     {
         Card card = new Card();
