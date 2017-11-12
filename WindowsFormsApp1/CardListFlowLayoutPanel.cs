@@ -15,7 +15,8 @@ namespace WindowsFormsApp1
 
         public CardListFlowLayoutPanel()
         {
-            this.Size = new System.Drawing
+            this.Size = new System.Drawing.Size(320, 320);
+            this.Location = new System.Drawing.Point(10, 10);
         }
 
         public void OnParentResize(int newXSize, int newYSize){
