@@ -15,11 +15,17 @@ namespace WindowsFormsApp1
         private static int MIN_CARD_SIZE = 160;
         private PictureBox cardImage;
         private Label piece, commissioner;
+        private string note;
+        private int commissionsFinishedCounter, queuePosition, priorityLevel;
         private float imageXSize, imageYSize;
-        private float windowXSize, windowYSize;
+        private float listXSize;
 
-        public CardFlowLayoutPanel(string title, string commissioner, string imageURL)
+        public CardFlowLayoutPanel(string title, string commissioner, string imageURL, int commissionsFinished, int position, int priority, string note)
         {
+            this.commissionsFinishedCounter = commissionsFinished;
+            this.queuePosition = position;
+            this.priorityLevel = priority;
+
             this.cardImage = new PictureBox
             {
                 ImageLocation = imageURL,
@@ -46,9 +52,8 @@ namespace WindowsFormsApp1
         }
 
         // In cases of the parent form resizing, we must resize ourselves.
-
-        public void OnParentResize(float newXSize, float newYSize) {
-            if (newXSize < windowXSize) {
+        public void OnParentResize(float newXSize) {
+            if (newXSize < listXSize) {
                 // We are shrinking the form. Adjust accordingly - downsize cards.
                 if (newXSize < MIN_CARD_SIZE) {
                     // We will simply add scroll bars on the form, not the card.
@@ -110,29 +115,19 @@ namespace WindowsFormsApp1
                 }
             }
 
-            this.windowXSize = newXSize;
-            this.windowYSize = newYSize;
+            this.listXSize = newXSize;
         }
 
-        public List<String> ConvertToCSON()
+        public String ConvertToCSV()
         {
-            List<String> CSONOutput = new List<String>();
+            String CSVOutput;
 
-            // CSON gives the type in the initial line
-            // Followed by variables.
-            // Essentially, this is the expected output:
-            // CardFlowLayoutPanel {
-            // "pictureImage" : "/url"
-            // "pieceTitle" : "$title"
-            // "commissionerName" : "$name"
-            // }
+            //We're outputting a CSV file to
+            CSVOutput = this.piece.Text + "," + this.commissioner.Text + "," + 
+                            this.cardImage.ImageLocation + "," + this.commissionsFinishedCounter.ToString() +
+                            "," + queuePosition.ToString() + "," + priorityLevel.ToString() + "," + note;
 
-            CSONOutput.Add(this.GetType().ToString() + " {\n");
-            CSONOutput.Add("\"pictureImage\" : \"" + this.cardImage.ImageLocation + "\"\n");
-            CSONOutput.Add("\"pieceTitle\" : \"" + this.piece.Text + "\"\n");
-            CSONOutput.Add("\"commisionerName\" : \"" + this.commissioner.Text + "\"\n}");
-
-            return CSONOutput;
+            return CSVOutput;
         }
     }
 }
