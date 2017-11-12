@@ -17,13 +17,18 @@ namespace WindowsFormsApp1
         private Label piece, commissioner;
 
         private string note;
-        private int commissionsFinishedCounter, queuePosition, priorityLevel;
+        private int commissionsFinishedCounter, queuePosition, priorityLevel, maxFinishedCommissions;
         private float imageXSize, imageYSize;
         private float listXSize;
 
-        public CardFlowLayoutPanel(string title, string commissioner, string imageURL, int commissionsFinished, int position, int priority, string note)
+        // Title, Commissioner, and imageURL are strings passed to visually impact the card.
+        // The commissionsFinished represents the number of commissions the card has been in the queue for.
+        // The position is the plaacement in the queue.
+        // The priority is the queue priority level, from 0 - 2, 0 being highest.
+        public CardFlowLayoutPanel(string title, string commissioner, string imageURL, int commissionsFinished, int maxCommissions, int position, int priority, string note)
         {
             this.commissionsFinishedCounter = commissionsFinished;
+            this.maxFinishedCommissions = maxCommissions;
             this.queuePosition = position;
             this.priorityLevel = priority;
             this.note = note;
