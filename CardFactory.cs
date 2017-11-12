@@ -8,7 +8,7 @@ public class CardFactory
     Card card = new Card();
 
     public String cardCollection;
-    public char[] cardDelims = ['\t', '\n'];
+    public char[] cardDelims = { '\t', '\n' };
     public String[] cards = new String[10];
 
     public void cardParser()

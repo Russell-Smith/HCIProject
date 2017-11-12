@@ -27,11 +27,6 @@ public class CardList
         }
     }
 
-    public void cardMoved(Card movedCard)
-    {
-
-    }
-
     public void removeCard(int position)
     {
         queue.RemoveAt(position);

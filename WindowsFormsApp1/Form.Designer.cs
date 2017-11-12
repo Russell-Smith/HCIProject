@@ -33,7 +33,7 @@ namespace WindowsFormsApp1
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.pieceName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.previewImage = new System.Windows.Forms.PictureBox();
             this.commissionerName = new System.Windows.Forms.TextBox();
             this.note = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -48,8 +48,8 @@ namespace WindowsFormsApp1
             this.label7 = new System.Windows.Forms.Label();
             this.position = new System.Windows.Forms.NumericUpDown();
             this.delete = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.createUpdate = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.previewImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.position)).BeginInit();
             this.SuspendLayout();
             // 
@@ -74,13 +74,13 @@ namespace WindowsFormsApp1
             this.label1.TabIndex = 1;
             this.label1.Text = "Piece Name:";
             // 
-            // pictureBox1
+            // previewImage
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(12, 172);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 100);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            this.previewImage.Location = new System.Drawing.Point(12, 172);
+            this.previewImage.Name = "previewImage";
+            this.previewImage.Size = new System.Drawing.Size(100, 100);
+            this.previewImage.TabIndex = 2;
+            this.previewImage.TabStop = false;
             // 
             // commissionerName
             // 
@@ -180,7 +180,7 @@ namespace WindowsFormsApp1
             // 
             // finish
             // 
-            this.finish.Location = new System.Drawing.Point(236, 249);
+            this.finish.Location = new System.Drawing.Point(220, 249);
             this.finish.Name = "finish";
             this.finish.Size = new System.Drawing.Size(53, 23);
             this.finish.TabIndex = 13;
@@ -215,14 +215,15 @@ namespace WindowsFormsApp1
             this.delete.UseVisualStyleBackColor = true;
             this.delete.Click += new System.EventHandler(this.delete_Click);
             // 
-            // button1
+            // createUpdate
             // 
-            this.button1.Location = new System.Drawing.Point(127, 249);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(86, 23);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "Create/Update";
-            this.button1.UseVisualStyleBackColor = true;
+            this.createUpdate.Location = new System.Drawing.Point(127, 249);
+            this.createUpdate.Name = "createUpdate";
+            this.createUpdate.Size = new System.Drawing.Size(53, 23);
+            this.createUpdate.TabIndex = 18;
+            this.createUpdate.Text = "Update";
+            this.createUpdate.UseVisualStyleBackColor = true;
+            this.createUpdate.Click += new System.EventHandler(this.createUpdate_Click);
             // 
             // CreateEditCardView
             // 
@@ -230,7 +231,7 @@ namespace WindowsFormsApp1
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 281);
             this.ControlBox = false;
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.createUpdate);
             this.Controls.Add(this.delete);
             this.Controls.Add(this.position);
             this.Controls.Add(this.label7);
@@ -245,12 +246,12 @@ namespace WindowsFormsApp1
             this.Controls.Add(this.label2);
             this.Controls.Add(this.note);
             this.Controls.Add(this.commissionerName);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.previewImage);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pieceName);
             this.Name = "CreateEditCardView";
             this.Text = "Create/Edit Commission";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.previewImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.position)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -261,7 +262,7 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.TextBox pieceName;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox previewImage;
         private System.Windows.Forms.TextBox commissionerName;
         private System.Windows.Forms.TextBox note;
         private System.Windows.Forms.Label label2;
@@ -276,6 +277,6 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.NumericUpDown position;
         private System.Windows.Forms.Button delete;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button createUpdate;
     }
 }

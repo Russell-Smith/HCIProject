@@ -149,7 +149,6 @@ public class Card
             this.priority = 1;
             this.completionCounter = 0;
             this.maxCompletionCounter = int.MaxValue;
-
         }
     }
 

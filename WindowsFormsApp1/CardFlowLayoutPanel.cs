@@ -15,6 +15,7 @@ namespace WindowsFormsApp1
         private static int MIN_CARD_SIZE = 160;
         private PictureBox cardImage;
         private Label piece, commissioner;
+
         private string note;
         private int commissionsFinishedCounter, queuePosition, priorityLevel;
         private float imageXSize, imageYSize;
@@ -52,7 +53,12 @@ namespace WindowsFormsApp1
 
         }
 
-        // In cases of the parent form resizing, we must resize ourselves.
+        /*
+        NOTE: Need to keep track of previous X size to know if we are moving towards Min or Max to scale appropriatley
+            EX: If new size is above mid moving towards max, stretch labels. If above mid moving towards mid, shrink. 
+        */
+
+        //In cases of the parent form resizing, we must resize ourselves.
         public void OnParentResize(float newXSize) {
             if (newXSize < listXSize) {
                 // We are shrinking the form. Adjust accordingly - downsize cards.
@@ -74,6 +80,7 @@ namespace WindowsFormsApp1
                     cardImage.Location = new System.Drawing.Point((int)newLocation, 0);
 
                 }
+                //Might should be newXSize < currentXSize, consistent problem
                 if (newXSize < MAX_CARD_SIZE) {
                     
                     // Begin to shorten the label size.
@@ -83,6 +90,7 @@ namespace WindowsFormsApp1
                 if (newXSize > MAX_CARD_SIZE)
                 {
                     // We need do nothing.
+                    //Russ - MessageBox("YOU SHALL NOT GROW");
                 }
                 else if (newXSize > MID_CARD_SIZE)
                 {

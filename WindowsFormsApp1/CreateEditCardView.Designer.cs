@@ -48,7 +48,8 @@ namespace WindowsFormsApp1
             this.label7 = new System.Windows.Forms.Label();
             this.position = new System.Windows.Forms.NumericUpDown();
             this.delete = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.createUpdate = new System.Windows.Forms.Button();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.position)).BeginInit();
             this.SuspendLayout();
@@ -97,7 +98,6 @@ namespace WindowsFormsApp1
             this.note.Name = "note";
             this.note.Size = new System.Drawing.Size(172, 63);
             this.note.TabIndex = 4;
-            this.note.TextChanged += new System.EventHandler(this.note_TextChanged);
             // 
             // label2
             // 
@@ -156,9 +156,9 @@ namespace WindowsFormsApp1
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(12, 108);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(83, 13);
+            this.label4.Size = new System.Drawing.Size(84, 13);
             this.label4.TabIndex = 10;
-            this.label4.Text = "Image Location:";
+            this.label4.Text = "Image Dircetory:";
             // 
             // label5
             // 
@@ -180,7 +180,7 @@ namespace WindowsFormsApp1
             // 
             // finish
             // 
-            this.finish.Location = new System.Drawing.Point(236, 249);
+            this.finish.Location = new System.Drawing.Point(221, 249);
             this.finish.Name = "finish";
             this.finish.Size = new System.Drawing.Size(53, 23);
             this.finish.TabIndex = 13;
@@ -203,7 +203,6 @@ namespace WindowsFormsApp1
             this.position.Name = "position";
             this.position.Size = new System.Drawing.Size(67, 20);
             this.position.TabIndex = 16;
-            this.position.ValueChanged += new System.EventHandler(this.position_ValueChanged);
             // 
             // delete
             // 
@@ -215,14 +214,14 @@ namespace WindowsFormsApp1
             this.delete.UseVisualStyleBackColor = true;
             this.delete.Click += new System.EventHandler(this.delete_Click);
             // 
-            // button1
+            // createUpdate
             // 
-            this.button1.Location = new System.Drawing.Point(127, 249);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(86, 23);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "Create/Update";
-            this.button1.UseVisualStyleBackColor = true;
+            this.createUpdate.Location = new System.Drawing.Point(127, 249);
+            this.createUpdate.Name = "createUpdate";
+            this.createUpdate.Size = new System.Drawing.Size(53, 23);
+            this.createUpdate.TabIndex = 18;
+            this.createUpdate.Text = "Update";
+            this.createUpdate.UseVisualStyleBackColor = true;
             // 
             // CreateEditCardView
             // 
@@ -230,7 +229,7 @@ namespace WindowsFormsApp1
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 281);
             this.ControlBox = false;
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.createUpdate);
             this.Controls.Add(this.delete);
             this.Controls.Add(this.position);
             this.Controls.Add(this.label7);
@@ -249,7 +248,7 @@ namespace WindowsFormsApp1
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pieceName);
             this.Name = "CreateEditCardView";
-            this.Text = "Create/Edit Commission";
+            this.Text = "Create Commission";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.position)).EndInit();
             this.ResumeLayout(false);
@@ -276,6 +275,7 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.NumericUpDown position;
         private System.Windows.Forms.Button delete;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button createUpdate;
+        private System.Windows.Forms.ColorDialog colorDialog1;
     }
 }
