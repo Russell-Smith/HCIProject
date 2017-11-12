@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApp1
 {
-    partial class Form1
+    partial class mainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -77,15 +77,15 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // Form1
+            // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 861);
             this.Controls.Add(this.panel1);
-            this.MaximumSize = new System.Drawing.Size(400, 900);
-            this.Name = "Form1";
-            this.Text = "AutoQueue";
+            this.MaximumSize = new System.Drawing.Size(1200, 900);
+            this.Name = "mainForm";
+            this.Text = "Auto Queue";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
