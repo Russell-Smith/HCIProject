@@ -25,6 +25,7 @@ namespace WindowsFormsApp1
             this.commissionsFinishedCounter = commissionsFinished;
             this.queuePosition = position;
             this.priorityLevel = priority;
+            this.note = note;
 
             this.cardImage = new PictureBox
             {
