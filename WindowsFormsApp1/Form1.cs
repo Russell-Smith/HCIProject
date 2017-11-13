@@ -14,24 +14,34 @@ namespace WindowsFormsApp1
     {
         public static CardListFlowLayoutPanel topList;
         public static CardListFlowLayoutPanel intermediateList;
-        public static CardListFlowLayoutPanel bottomList; 
+        public static CardListFlowLayoutPanel bottomList;
+        public static CardFileFactory fileFactory;
+        public static CardFactory cardFactory;
 
         public mainForm()
         {
-            topList = new CardListFlowLayoutPanel();
-            intermediateList = new CardListFlowLayoutPanel();
-            bottomList = new CardListFlowLayoutPanel();
+            topList = new CardListFlowLayoutPanel(0);
+            intermediateList = new CardListFlowLayoutPanel(1);
+            bottomList = new CardListFlowLayoutPanel(2);
+            fileFactory = new CardFileFactory();
+            cardFactory = new CardFactory();
             InitializeComponent();
         }
 
         //Once a commission is finished, all cards will increment by one
         public static void finishCommission()
         {
-            topList.cardIncrement();
-            intermediateList.cardIncrement();
-            bottomList.cardIncrement();
+            List<CardFlowLayoutPanel> pushToTopList = new List<CardFlowLayoutPanel>();
+
+            topList.CardIncrement();
+            pushToTopList.AddRange(intermediateList.CardIncrement());
+            pushToTopList.AddRange(bottomList.CardIncrement());
+
+            topList.AddRange(pushToTopList);
+
         }
 
+        /*
         public static CardListFlowLayoutPanel getQueue(int priority)
         {
             if (priority == 1)
@@ -45,11 +55,18 @@ namespace WindowsFormsApp1
                 return queue3;
             }
             return null;
-        }
+        }*/
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            List<CardFlowLayoutPanel>[] populatedList = CardFactory.PopulateFromDisk();
+            topList.AddRange(populatedList[0]);
+            intermediateList.AddRange(populatedList[1]);
+            bottomList.AddRange(populatedList[2]);
 
+            this.Controls.Add(topList);
+            this.Controls.Add(intermediateList);
+            this.Controls.Add(bottomList);
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -72,6 +89,7 @@ namespace WindowsFormsApp1
 
         }
 
+        /*
         //Temporary function that will handle the information from the create commission form
         private void createClicked()
         {
@@ -79,6 +97,7 @@ namespace WindowsFormsApp1
             card = card.createCard();
 
         }
+        */
 
     }
 
@@ -94,9 +113,11 @@ namespace WindowsFormsApp1
         static String CSVFile;
         public static void writeFile(List<String> cardList)
         {
-            
+
             //Using a CSV file, we will write to delimit values by comma, and objects by newline.
-            CSVFile += cardList + '\n';
+            foreach(String s in cardList){
+                CSVFile += s + "\n";
+            }
 
             using(System.IO.FileStream fs = System.IO.File.Create(filename)){
                 fs.Write(Encoding.UTF8.GetBytes(CSVFile), 0, Encoding.UTF8.GetByteCount(CSVFile));
@@ -113,7 +134,7 @@ namespace WindowsFormsApp1
 
         static string filename = "cardlist.csv";
 
-        public static List<CardFlowLayoutPanel>[] populateFromDisk(){
+        public static List<CardFlowLayoutPanel>[] PopulateFromDisk(){
 
             if(System.IO.File.Exists(filename)){
                 List<CardFlowLayoutPanel>[] cardListArray = new List<CardFlowLayoutPanel>[3];
@@ -121,43 +142,44 @@ namespace WindowsFormsApp1
                 cardListArray[1] = new List<CardFlowLayoutPanel>();
                 cardListArray[2] = new List<CardFlowLayoutPanel>();
 
-                String piece, commissioner, imgURL, commissionsFinished, queuePosition, priorityLevel, note;
+                String piece, commissioner, imgURL, commissionsFinished, maxCommissions, queuePosition, priorityLevel, note;
 
                 using(System.IO.FileStream fs = System.IO.File.OpenRead(filename)){
                     byte[] b = new byte[fs.Length];
 
                     UTF8Encoding encoder = new UTF8Encoding(true);
-                    String CSVFull = new String();
+                    String CSVFull = "";
                     List<String> CSVParsed = new List<String>();
 
                     fs.Read(b, 0, b.Length);
                     CSVFull = encoder.GetString(b);
-                    CSVFile.Add(CSVFull.Split('\n'));
+                    CSVParsed.AddRange(CSVFull.Split('\n'));
 
-                    foreach(String s in CSVFile){
+                    foreach(String s in CSVParsed){
                         String[] cardStrings = s.Split(',');
                         piece = cardStrings[0];
                         commissioner = cardStrings[1];
                         imgURL = cardStrings[2];
                         commissionsFinished = cardStrings[3];
-                        queuePosition = cardStrings[4];
-                        priorityLevel = cardStrings[5];
-                        note = cardStrings[6];
+                        maxCommissions = cardStrings[4];
+                        queuePosition = cardStrings[5];
+                        priorityLevel = cardStrings[6];
+                        note = cardStrings[7];
 
                         switch (priorityLevel){
                             case 0:
                                 cardListArray[0].Add(new CardFlowLayoutPanel(
-                                    piece, commissioner, imgUrl, Int32.Parse(commissionedFinished), Int32.Parse(queuePosition),
+                                    piece, commissioner, imgURL, Int32.Parse(commissionsFinished), Int32.Parse(maxCommissions), Int32.Parse(queuePosition),
                                     Int32.Parse(priorityLevel), note));
                                 break;
                             case 1:
                                 cardListArray[1].Add(new CardFlowLayoutPanel(
-                                    piece, commissioner, imgUrl, Int32.Parse(commissionedFinished), Int32.Parse(queuePosition),
+                                    piece, commissioner, imgURL, Int32.Parse(commissionsFinished), Int32.Parse(maxCommissions), Int32.Parse(queuePosition),
                                     Int32.Parse(priorityLevel), note));
                                 break;
                             case 2:
                                 cardListArray[2].Add(new CardFlowLayoutPanel(
-                                    piece, commissioner, imgUrl, Int32.Parse(commissionedFinished), Int32.Parse(queuePosition),
+                                    piece, commissioner, imgURL, Int32.Parse(commissionsFinished), Int32.Parse(maxCommissions), Int32.Parse(queuePosition),
                                     Int32.Parse(priorityLevel), note));
                                 break;
                             default:
@@ -166,17 +188,21 @@ namespace WindowsFormsApp1
                         }
                     }
                 }
+                return cardListArray;
 
             } else {
                 Console.WriteLine("No file present in root directory. User has no cards saved.");
+                return null;
             }
         }
 
-        public CardFlowLayoutPanel getCardPanelFromInput(string title, string commissioner, string imageURL, int commissionsFinished, int position, int priority, string note){
-            return new CardFlowLayoutPanel(title, commissioner, imageURL, commissionsFinished, position, priority, note);
+        public CardFlowLayoutPanel getCardPanelFromInput(string title, string commissioner, string imageURL, int commissionsFinished, int maxCommissions, int position, int priority, string note){
+            return new CardFlowLayoutPanel(title, commissioner, imageURL, commissionsFinished, maxCommissions, position, priority, note);
         }
 
     }
+
+    /*
 
     //the class that manages the cards within the queues, and each queue.
     //constructs them in UI as well
@@ -224,8 +250,9 @@ namespace WindowsFormsApp1
         {
             return queue[position];
         }
-    }
-    
+    }*/
+
+    /*
     //the class that creates and maintains the cards information.
     public class Card
     {
@@ -419,5 +446,5 @@ namespace WindowsFormsApp1
 
             CardFileFactory.append(CSON);
         }
-    }
+    }*/
 }

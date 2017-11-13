@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-    class CardFlowLayoutPanel : Panel
+    public class CardFlowLayoutPanel : Panel
     {
 
         private static int MAX_CARD_SIZE = 320;
@@ -139,9 +139,21 @@ namespace WindowsFormsApp1
             //We're outputting a CSV file to
             CSVOutput = this.piece.Text + "," + this.commissioner.Text + "," + 
                             this.cardImage.ImageLocation + "," + this.commissionsFinishedCounter.ToString() +
-                            "," + queuePosition.ToString() + "," + priorityLevel.ToString() + "," + note;
+                            "," + this.maxFinishedCommissions.ToString() + "," + queuePosition.ToString() + "," + priorityLevel.ToString() + "," + note;
 
             return CSVOutput;
+        }
+
+        public bool IncrementCommissionsFinished(){
+            this.commissionsFinishedCounter++;
+
+            if(this.commissionsFinishedCounter == maxFinishedCommissions){
+                this.priorityLevel = 0;
+                this.commissionsFinishedCounter = 0;
+                this.maxFinishedCommissions = -1;
+                return true;
+            }
+            return false;
         }
     }
 }
