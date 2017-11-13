@@ -64,11 +64,11 @@
       <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="EditCard.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="QueueForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="QueueForm.Designer.cs">
+      <DependentUpon>QueueForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Form3.cs">
       <SubType>Form</SubType>
@@ -86,8 +86,8 @@
     <EmbeddedResource Include="CreateEditCardView.resx">
       <DependentUpon>CreateEditCardView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="QueueForm.resx">
+      <DependentUpon>QueueForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form3.resx">
       <DependentUpon>Form3.cs</DependentUpon>

@@ -59,7 +59,7 @@ namespace WindowsFormsApp1
         }
 
         /*
-        NOTE: Need to keep track of previous X size to know if we are moving towards Min or Max to scale appropriatley
+            NOTE: Need to keep track of previous X size to know if we are moving towards Min or Max to scale appropriateley
             EX: If new size is above mid moving towards max, stretch labels. If above mid moving towards mid, shrink. 
         */
 
@@ -95,7 +95,7 @@ namespace WindowsFormsApp1
                 if (newXSize > MAX_CARD_SIZE)
                 {
                     // We need do nothing.
-                    //Russ - MessageBox("YOU SHALL NOT GROW");
+                    //Russ - MessageBox("YOU SHALL NOT GROW") <- No.
                 }
                 else if (newXSize > MID_CARD_SIZE)
                 {

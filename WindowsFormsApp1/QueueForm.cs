@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-    public partial class mainForm : Form
+    public partial class QueueForm : Form
     {
         public static CardListFlowLayoutPanel topList;
         public static CardListFlowLayoutPanel intermediateList;
@@ -18,7 +18,7 @@ namespace WindowsFormsApp1
         public static CardFileFactory fileFactory;
         public static CardFactory cardFactory;
 
-        public mainForm()
+        public QueueForm()
         {
             topList = new CardListFlowLayoutPanel(0);
             intermediateList = new CardListFlowLayoutPanel(1);
@@ -57,7 +57,7 @@ namespace WindowsFormsApp1
             return null;
         }*/
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void QueueForm_Load(object sender, EventArgs e)
         {
             List<CardFlowLayoutPanel>[] populatedList = CardFactory.PopulateFromDisk();
             topList.AddRange(populatedList[0]);
@@ -167,17 +167,17 @@ namespace WindowsFormsApp1
                         note = cardStrings[7];
 
                         switch (priorityLevel){
-                            case 0:
+                            case "0":
                                 cardListArray[0].Add(new CardFlowLayoutPanel(
                                     piece, commissioner, imgURL, Int32.Parse(commissionsFinished), Int32.Parse(maxCommissions), Int32.Parse(queuePosition),
                                     Int32.Parse(priorityLevel), note));
                                 break;
-                            case 1:
+                            case "1":
                                 cardListArray[1].Add(new CardFlowLayoutPanel(
                                     piece, commissioner, imgURL, Int32.Parse(commissionsFinished), Int32.Parse(maxCommissions), Int32.Parse(queuePosition),
                                     Int32.Parse(priorityLevel), note));
                                 break;
-                            case 2:
+                            case "2":
                                 cardListArray[2].Add(new CardFlowLayoutPanel(
                                     piece, commissioner, imgURL, Int32.Parse(commissionsFinished), Int32.Parse(maxCommissions), Int32.Parse(queuePosition),
                                     Int32.Parse(priorityLevel), note));
