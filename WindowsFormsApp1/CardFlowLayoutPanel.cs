@@ -39,13 +39,15 @@ namespace WindowsFormsApp1
                 SizeMode = PictureBoxSizeMode.StretchImage
             };
 
-            this.piece = new Label();
-            this.piece.Text = title;
-            this.piece.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.piece = new Label() {
+                Text = title,
+                TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+            };
 
-            this.commissioner = new Label();
-            this.commissioner.Text = commissioner;
-            this.commissioner.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.commissioner = new Label() {
+                Text = commissioner,
+                TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+            };
 
             this.Size = new System.Drawing.Size(320, 170);
 
@@ -56,6 +58,30 @@ namespace WindowsFormsApp1
             this.piece.Location = new System.Drawing.Point(170, 40);
             this.commissioner.Location = new System.Drawing.Point(170, 80);
 
+        }
+
+        //Temporary constructor for use with the CardCreationForm for now.
+        //This fills in NON-FINAL VALUES.
+        //IF THIS IS IN THE FINAL PRESENTATION, WE DUN GOOFED.
+        public CardFlowLayoutPanel(string title, string commissioner, int priority, string note){
+            this.commissionsFinishedCounter = 0;
+            if(priority == 0){
+                this.priorityLevel = 0;
+                this.maxFinishedCommissions = -1;
+            } else {
+                this.priorityLevel = priority;
+                this.maxFinishedCommissions = priority * 5;
+            }
+
+            this.note = note;
+            this.cardImage = new PictureBox{
+                ImageLocation = "blankImage.jpg",
+                SizeMode = PictureBoxSizeMode.StretchImage
+            };
+
+            this.queuePosition = 0;
+            this.piece.Text = title;
+            this.commissioner.Text = commissioner;
         }
 
         /*

@@ -21,6 +21,8 @@ namespace WindowsFormsApp1
             if(this.priority > 0){
                 this.Visible = false;
             }
+            this.cardList = new List<CardFlowLayoutPanel>();
+            this.BackColor = System.Drawing.Color.White;
         }
 
         public void OnParentResize(int newXSize, int newYSize){
@@ -33,7 +35,12 @@ namespace WindowsFormsApp1
 
         public List<CardFlowLayoutPanel> CardIncrement(){
 
+            if (cardList.Count == 0){
+                return cardList;
+            }
+
             List<CardFlowLayoutPanel> outputList = new List<CardFlowLayoutPanel>();
+
 
             foreach(CardFlowLayoutPanel card in cardList){
                 if (card.IncrementCommissionsFinished()){

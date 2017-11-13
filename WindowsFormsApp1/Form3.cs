@@ -22,15 +22,15 @@ namespace WindowsFormsApp1
         private void createButton_Click(object sender, EventArgs e)
         {
             //take input from the fields here.
-            String artistName = artistBox.Text;
+            String pieceName = artistBox.Text;
             String commissionerName = commissionerBox.Text;
             String note = noteBox.Text;
 
             decimal price = priceBox.Value;
 
-            //this puts all our data from the form into the card objecct.
-            var cqc = new Card();
-            cqc.createCard(artistName, commissionerName, note, );
+            //this puts all our data from the form into the card object.
+            //For now, this is how this will be done. However, eventually, this will be done differently.
+            QueueForm.addCommission(pieceName, commissionerName, note);
         }
     }
 }

@@ -26,6 +26,7 @@ namespace WindowsFormsApp1
             fileFactory = new CardFileFactory();
             cardFactory = new CardFactory();
             InitializeComponent();
+            listContainers.BackColor = Color.Black;
         }
 
         //Once a commission is finished, all cards will increment by one
@@ -39,6 +40,12 @@ namespace WindowsFormsApp1
 
             topList.AddRange(pushToTopList);
 
+        }
+
+        public static void addCommission(string pieceName, string commissionerName, string note) {
+
+
+            cardFactory.getCardPanelFromInput(pieceName, commissionerName, 2, note);
         }
 
         /*
@@ -64,9 +71,9 @@ namespace WindowsFormsApp1
             intermediateList.AddRange(populatedList[1]);
             bottomList.AddRange(populatedList[2]);
 
-            this.Controls.Add(topList);
-            this.Controls.Add(intermediateList);
-            this.Controls.Add(bottomList);
+            this.listContainers.Controls.Add(topList);
+            this.listContainers.Controls.Add(intermediateList);
+            this.listContainers.Controls.Add(bottomList);
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -141,11 +148,12 @@ namespace WindowsFormsApp1
 
         public static List<CardFlowLayoutPanel>[] PopulateFromDisk(){
 
-            if(System.IO.File.Exists(filename)){
-                List<CardFlowLayoutPanel>[] cardListArray = new List<CardFlowLayoutPanel>[3];
-                cardListArray[0] = new List<CardFlowLayoutPanel>();
-                cardListArray[1] = new List<CardFlowLayoutPanel>();
-                cardListArray[2] = new List<CardFlowLayoutPanel>();
+            List<CardFlowLayoutPanel>[] cardListArray = new List<CardFlowLayoutPanel>[3];
+            cardListArray[0] = new List<CardFlowLayoutPanel>();
+            cardListArray[1] = new List<CardFlowLayoutPanel>();
+            cardListArray[2] = new List<CardFlowLayoutPanel>();
+
+            if (System.IO.File.Exists(filename)){
 
                 String piece, commissioner, imgURL, commissionsFinished, maxCommissions, queuePosition, priorityLevel, note;
 
@@ -193,19 +201,22 @@ namespace WindowsFormsApp1
                         }
                     }
                 }
-                return cardListArray;
 
             } else {
                 Console.WriteLine("No file present in root directory. User has no cards saved.");
-                return null;
-            }
+                }
+            return cardListArray;
         }
 
         public CardFlowLayoutPanel getCardPanelFromInput(string title, string commissioner, string imageURL, int commissionsFinished, int maxCommissions, int position, int priority, string note){
             return new CardFlowLayoutPanel(title, commissioner, imageURL, commissionsFinished, maxCommissions, position, priority, note);
         }
 
-    }
+        public CardFlowLayoutPanel getCardPanelFromInput(string title, string commissioner, int priority, string note)
+            {
+            return new CardFlowLayoutPanel(title, commissioner, priority, note);
+            }
+        }
 
     /*
 
