@@ -89,6 +89,11 @@ namespace WindowsFormsApp1
 
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
         /*
         //Temporary function that will handle the information from the create commission form
         private void createClicked()
