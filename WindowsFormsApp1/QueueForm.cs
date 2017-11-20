@@ -27,6 +27,7 @@ namespace WindowsFormsApp1
             cardFactory = new CardFactory();
             InitializeComponent();
             listContainers.BackColor = Color.Black;
+            this.TopMost = Properties.Settings.Default.alwaysOnTop;
         }
 
         //Once a commission is finished, all cards will increment by one

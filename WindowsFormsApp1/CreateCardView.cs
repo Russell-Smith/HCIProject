@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace WindowsFormsApp1
 {
 
-    public partial class CreateEditCardView : Form
+    public partial class EditCardView : Form
     {
         //Input storage variables
         private string pieceNameIn, commissionerNameIn, imgRootDirIn, noteIn;
@@ -20,7 +20,7 @@ namespace WindowsFormsApp1
         //Booleans to make sure that information is in the fields.
         private Boolean hasPieceName, hasCommissionerName, hasImgRootDir, hasPriority;
 
-        public CreateEditCardView()
+        public EditCardView()
         {
             InitializeComponent();
         }

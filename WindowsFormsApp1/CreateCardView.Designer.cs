@@ -2,7 +2,7 @@
 
 namespace WindowsFormsApp1
 {
-    partial class CreateEditCardView
+    partial class EditCardView
     {
         /// <summary>
         /// Required designer variable.

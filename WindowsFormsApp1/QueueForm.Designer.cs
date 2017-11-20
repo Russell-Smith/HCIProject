@@ -32,6 +32,7 @@
             this.createCardBtn = new System.Windows.Forms.Button();
             this.showQueueBtn = new System.Windows.Forms.Button();
             this.listContainers = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // createCardBtn
@@ -60,11 +61,21 @@
             this.listContainers.Size = new System.Drawing.Size(359, 805);
             this.listContainers.TabIndex = 2;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(155, 824);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 25);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Settings";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // QueueForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 861);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.listContainers);
             this.Controls.Add(this.showQueueBtn);
             this.Controls.Add(this.createCardBtn);
@@ -81,6 +92,7 @@
         private System.Windows.Forms.Button createCardBtn;
         private System.Windows.Forms.Button showQueueBtn;
         private System.Windows.Forms.Panel listContainers;
-    }
+        private System.Windows.Forms.Button button1;
+        }
 }
 
