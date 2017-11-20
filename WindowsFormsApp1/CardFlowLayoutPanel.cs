@@ -80,8 +80,43 @@ namespace WindowsFormsApp1
             };
 
             this.queuePosition = 0;
-            this.piece.Text = title;
-            this.commissioner.Text = commissioner;
+
+            this.piece = new Label() {
+                Text = title,
+                TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+            };
+
+            this.commissioner = new Label() {
+                Text = commissioner,
+                TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+            };
+        }
+        
+        //This is for testing, and does not represent ANY FORM OF TRUE CARD.
+        //Remove this after testing functionality of layout methods.
+        public CardFlowLayoutPanel(){
+            this.commissionsFinishedCounter = 0;
+            this.maxFinishedCommissions = -1;
+            this.priorityLevel = 0;
+            this.note = "Test Card -- Please Ignore";
+            this.cardImage = new PictureBox{
+                ImageLocation = "blankImage.jpg",
+                SizeMode = PictureBoxSizeMode.StretchImage
+            };
+            
+            this.queuePosition = 0;         
+           
+            this.piece = new Label() {
+                Text = "Test Card -- Please Ignore",
+                TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+            };
+
+            this.commissioner = new Label() {
+                Text = "Test Commissioner -- Please Ignore",
+                TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+            };
+            
+            this.BackColor = Color.Blue;
         }
 
         /*
