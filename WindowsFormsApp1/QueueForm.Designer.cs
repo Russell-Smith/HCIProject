@@ -43,6 +43,7 @@
             this.createCardBtn.TabIndex = 0;
             this.createCardBtn.Text = "Create Commission";
             this.createCardBtn.UseVisualStyleBackColor = true;
+            this.createCardBtn.Click += new System.EventHandler(this.createCardBtn_Click);
             // 
             // showQueueBtn
             // 
@@ -58,7 +59,7 @@
             // 
             this.listContainers.Location = new System.Drawing.Point(13, 13);
             this.listContainers.Name = "listContainers";
-            this.listContainers.Size = new System.Drawing.Size(359, 805);
+            this.listContainers.Size = new System.Drawing.Size(360, 800);
             this.listContainers.TabIndex = 2;
             // 
             // button1
@@ -69,6 +70,7 @@
             this.button1.TabIndex = 3;
             this.button1.Text = "Settings";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // QueueForm
             // 

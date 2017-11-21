@@ -31,199 +31,201 @@ namespace WindowsFormsApp1
         private void InitializeComponent()
         {
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.pieceName = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.commissionerName = new System.Windows.Forms.TextBox();
-            this.note = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.priority = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.browse = new System.Windows.Forms.Button();
-            this.imgRootDir = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.finish = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.position = new System.Windows.Forms.NumericUpDown();
-            this.delete = new System.Windows.Forms.Button();
-            this.createUpdate = new System.Windows.Forms.Button();
+            this.pieceNameTxtBox = new System.Windows.Forms.TextBox();
+            this.pieceLabel = new System.Windows.Forms.Label();
+            this.imagePreviewPicBox = new System.Windows.Forms.PictureBox();
+            this.commissionerNameTxtBox = new System.Windows.Forms.TextBox();
+            this.noteTxtBox = new System.Windows.Forms.TextBox();
+            this.commissionerLabel = new System.Windows.Forms.Label();
+            this.priorityDropDown = new System.Windows.Forms.ComboBox();
+            this.priorityLabel = new System.Windows.Forms.Label();
+            this.browseBtn = new System.Windows.Forms.Button();
+            this.imageLocationTxtBox = new System.Windows.Forms.TextBox();
+            this.imageLabel = new System.Windows.Forms.Label();
+            this.imagePreviewLabel = new System.Windows.Forms.Label();
+            this.noteLabel = new System.Windows.Forms.Label();
+            this.finishBtn = new System.Windows.Forms.Button();
+            this.positionLabel = new System.Windows.Forms.Label();
+            this.positionNumInput = new System.Windows.Forms.NumericUpDown();
+            this.deleteBtn = new System.Windows.Forms.Button();
+            this.updateBtn = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.position)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imagePreviewPicBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.positionNumInput)).BeginInit();
             this.SuspendLayout();
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // pieceName
+            // pieceNameTxtBox
             // 
-            this.pieceName.Location = new System.Drawing.Point(199, 25);
-            this.pieceName.Name = "pieceName";
-            this.pieceName.Size = new System.Drawing.Size(380, 20);
-            this.pieceName.TabIndex = 0;
-            this.pieceName.TextChanged += new System.EventHandler(this.pieceName_TextChanged);
+            this.pieceNameTxtBox.Location = new System.Drawing.Point(199, 25);
+            this.pieceNameTxtBox.Name = "pieceNameTxtBox";
+            this.pieceNameTxtBox.Size = new System.Drawing.Size(380, 20);
+            this.pieceNameTxtBox.TabIndex = 0;
+            this.pieceNameTxtBox.TextChanged += new System.EventHandler(this.pieceName_TextChanged);
             // 
-            // label1
+            // pieceLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(196, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Piece Name:";
+            this.pieceLabel.AutoSize = true;
+            this.pieceLabel.Location = new System.Drawing.Point(196, 9);
+            this.pieceLabel.Name = "pieceLabel";
+            this.pieceLabel.Size = new System.Drawing.Size(68, 13);
+            this.pieceLabel.TabIndex = 1;
+            this.pieceLabel.Text = "Piece Name:";
             // 
-            // pictureBox1
+            // imagePreviewPicBox
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(15, 25);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(160, 160);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.imagePreviewPicBox.Location = new System.Drawing.Point(15, 25);
+            this.imagePreviewPicBox.Name = "imagePreviewPicBox";
+            this.imagePreviewPicBox.Size = new System.Drawing.Size(160, 160);
+            this.imagePreviewPicBox.TabIndex = 2;
+            this.imagePreviewPicBox.TabStop = false;
+            this.imagePreviewPicBox.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // commissionerName
+            // commissionerNameTxtBox
             // 
-            this.commissionerName.Location = new System.Drawing.Point(199, 75);
-            this.commissionerName.Name = "commissionerName";
-            this.commissionerName.Size = new System.Drawing.Size(380, 20);
-            this.commissionerName.TabIndex = 3;
-            this.commissionerName.TextChanged += new System.EventHandler(this.commissionerName_TextChanged);
+            this.commissionerNameTxtBox.Location = new System.Drawing.Point(199, 75);
+            this.commissionerNameTxtBox.Name = "commissionerNameTxtBox";
+            this.commissionerNameTxtBox.Size = new System.Drawing.Size(380, 20);
+            this.commissionerNameTxtBox.TabIndex = 3;
+            this.commissionerNameTxtBox.TextChanged += new System.EventHandler(this.commissionerName_TextChanged);
             // 
-            // note
+            // noteTxtBox
             // 
-            this.note.Location = new System.Drawing.Point(15, 215);
-            this.note.Multiline = true;
-            this.note.Name = "note";
-            this.note.Size = new System.Drawing.Size(400, 40);
-            this.note.TabIndex = 4;
+            this.noteTxtBox.Location = new System.Drawing.Point(15, 215);
+            this.noteTxtBox.Multiline = true;
+            this.noteTxtBox.Name = "noteTxtBox";
+            this.noteTxtBox.Size = new System.Drawing.Size(400, 40);
+            this.noteTxtBox.TabIndex = 4;
             // 
-            // label2
+            // commissionerLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(196, 59);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(105, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Commissioner Name:";
+            this.commissionerLabel.AutoSize = true;
+            this.commissionerLabel.Location = new System.Drawing.Point(196, 59);
+            this.commissionerLabel.Name = "commissionerLabel";
+            this.commissionerLabel.Size = new System.Drawing.Size(105, 13);
+            this.commissionerLabel.TabIndex = 5;
+            this.commissionerLabel.Text = "Commissioner Name:";
             // 
-            // priority
+            // priorityDropDown
             // 
-            this.priority.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.priority.FormattingEnabled = true;
-            this.priority.Items.AddRange(new object[] {
+            this.priorityDropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.priorityDropDown.FormattingEnabled = true;
+            this.priorityDropDown.Items.AddRange(new object[] {
             "1",
             "2",
             "3"});
-            this.priority.Location = new System.Drawing.Point(507, 215);
-            this.priority.MaxDropDownItems = 3;
-            this.priority.Name = "priority";
-            this.priority.Size = new System.Drawing.Size(72, 21);
-            this.priority.Sorted = true;
-            this.priority.TabIndex = 6;
-            this.priority.SelectedIndexChanged += new System.EventHandler(this.priority_SelectedIndexChanged);
+            this.priorityDropDown.Location = new System.Drawing.Point(507, 215);
+            this.priorityDropDown.MaxDropDownItems = 3;
+            this.priorityDropDown.Name = "priorityDropDown";
+            this.priorityDropDown.Size = new System.Drawing.Size(72, 21);
+            this.priorityDropDown.Sorted = true;
+            this.priorityDropDown.TabIndex = 6;
+            this.priorityDropDown.SelectedIndexChanged += new System.EventHandler(this.priority_SelectedIndexChanged);
             // 
-            // label3
+            // priorityLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(431, 218);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(70, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Priority Level:";
+            this.priorityLabel.AutoSize = true;
+            this.priorityLabel.Location = new System.Drawing.Point(431, 218);
+            this.priorityLabel.Name = "priorityLabel";
+            this.priorityLabel.Size = new System.Drawing.Size(70, 13);
+            this.priorityLabel.TabIndex = 7;
+            this.priorityLabel.Text = "Priority Level:";
             // 
-            // browse
+            // browseBtn
             // 
-            this.browse.Location = new System.Drawing.Point(507, 151);
-            this.browse.Name = "browse";
-            this.browse.Size = new System.Drawing.Size(72, 25);
-            this.browse.TabIndex = 8;
-            this.browse.Text = "&Browse";
-            this.browse.UseVisualStyleBackColor = true;
-            this.browse.Click += new System.EventHandler(this.browse_Click);
+            this.browseBtn.Location = new System.Drawing.Point(507, 151);
+            this.browseBtn.Name = "browseBtn";
+            this.browseBtn.Size = new System.Drawing.Size(72, 25);
+            this.browseBtn.TabIndex = 8;
+            this.browseBtn.Text = "&Browse";
+            this.browseBtn.UseVisualStyleBackColor = true;
+            this.browseBtn.Click += new System.EventHandler(this.browse_Click);
             // 
-            // imgRootDir
+            // imageLocationTxtBox
             // 
-            this.imgRootDir.Location = new System.Drawing.Point(199, 125);
-            this.imgRootDir.Name = "imgRootDir";
-            this.imgRootDir.Size = new System.Drawing.Size(380, 20);
-            this.imgRootDir.TabIndex = 9;
-            this.imgRootDir.TextChanged += new System.EventHandler(this.imgRootDir_TextChanged);
+            this.imageLocationTxtBox.AllowDrop = true;
+            this.imageLocationTxtBox.Location = new System.Drawing.Point(199, 125);
+            this.imageLocationTxtBox.Name = "imageLocationTxtBox";
+            this.imageLocationTxtBox.Size = new System.Drawing.Size(380, 20);
+            this.imageLocationTxtBox.TabIndex = 9;
+            this.imageLocationTxtBox.TextChanged += new System.EventHandler(this.imgRootDir_TextChanged);
             // 
-            // label4
+            // imageLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(196, 109);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(84, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Image Directory:";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
+            this.imageLabel.AutoSize = true;
+            this.imageLabel.Location = new System.Drawing.Point(196, 109);
+            this.imageLabel.Name = "imageLabel";
+            this.imageLabel.Size = new System.Drawing.Size(39, 13);
+            this.imageLabel.TabIndex = 10;
+            this.imageLabel.Text = "Image:";
+            this.imageLabel.Click += new System.EventHandler(this.label4_Click);
             // 
-            // label5
+            // imagePreviewLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 9);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(80, 13);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Image Preview:";
+            this.imagePreviewLabel.AutoSize = true;
+            this.imagePreviewLabel.Location = new System.Drawing.Point(12, 9);
+            this.imagePreviewLabel.Name = "imagePreviewLabel";
+            this.imagePreviewLabel.Size = new System.Drawing.Size(80, 13);
+            this.imagePreviewLabel.TabIndex = 11;
+            this.imagePreviewLabel.Text = "Image Preview:";
             // 
-            // label6
+            // noteLabel
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 199);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(30, 13);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Note";
+            this.noteLabel.AutoSize = true;
+            this.noteLabel.Location = new System.Drawing.Point(12, 199);
+            this.noteLabel.Name = "noteLabel";
+            this.noteLabel.Size = new System.Drawing.Size(30, 13);
+            this.noteLabel.TabIndex = 12;
+            this.noteLabel.Text = "Note";
             // 
-            // finish
+            // finishBtn
             // 
-            this.finish.Location = new System.Drawing.Point(361, 287);
-            this.finish.Name = "finish";
-            this.finish.Size = new System.Drawing.Size(105, 25);
-            this.finish.TabIndex = 13;
-            this.finish.Text = "&Finish Commission";
-            this.finish.UseVisualStyleBackColor = true;
-            this.finish.Click += new System.EventHandler(this.finish_Click);
+            this.finishBtn.Location = new System.Drawing.Point(361, 287);
+            this.finishBtn.Name = "finishBtn";
+            this.finishBtn.Size = new System.Drawing.Size(105, 25);
+            this.finishBtn.TabIndex = 13;
+            this.finishBtn.Text = "&Finish Commission";
+            this.finishBtn.UseVisualStyleBackColor = true;
+            this.finishBtn.Click += new System.EventHandler(this.finish_Click);
             // 
-            // label7
+            // positionLabel
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(454, 244);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(47, 13);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "Position:";
+            this.positionLabel.AutoSize = true;
+            this.positionLabel.Location = new System.Drawing.Point(454, 244);
+            this.positionLabel.Name = "positionLabel";
+            this.positionLabel.Size = new System.Drawing.Size(47, 13);
+            this.positionLabel.TabIndex = 15;
+            this.positionLabel.Text = "Position:";
             // 
-            // position
+            // positionNumInput
             // 
-            this.position.Location = new System.Drawing.Point(507, 242);
-            this.position.Name = "position";
-            this.position.Size = new System.Drawing.Size(72, 20);
-            this.position.TabIndex = 16;
+            this.positionNumInput.Location = new System.Drawing.Point(507, 242);
+            this.positionNumInput.Name = "positionNumInput";
+            this.positionNumInput.Size = new System.Drawing.Size(72, 20);
+            this.positionNumInput.TabIndex = 16;
             // 
-            // delete
+            // deleteBtn
             // 
-            this.delete.Location = new System.Drawing.Point(472, 287);
-            this.delete.Name = "delete";
-            this.delete.Size = new System.Drawing.Size(110, 25);
-            this.delete.TabIndex = 17;
-            this.delete.Text = "&Delete Commission";
-            this.delete.UseVisualStyleBackColor = true;
-            this.delete.Click += new System.EventHandler(this.delete_Click);
+            this.deleteBtn.Location = new System.Drawing.Point(472, 287);
+            this.deleteBtn.Name = "deleteBtn";
+            this.deleteBtn.Size = new System.Drawing.Size(110, 25);
+            this.deleteBtn.TabIndex = 17;
+            this.deleteBtn.Text = "&Delete Commission";
+            this.deleteBtn.UseVisualStyleBackColor = true;
+            this.deleteBtn.Click += new System.EventHandler(this.delete_Click);
             // 
-            // createUpdate
+            // updateBtn
             // 
-            this.createUpdate.Location = new System.Drawing.Point(15, 287);
-            this.createUpdate.Name = "createUpdate";
-            this.createUpdate.Size = new System.Drawing.Size(75, 25);
-            this.createUpdate.TabIndex = 18;
-            this.createUpdate.Text = "&Update Card";
-            this.createUpdate.UseVisualStyleBackColor = true;
+            this.updateBtn.Location = new System.Drawing.Point(15, 287);
+            this.updateBtn.Name = "updateBtn";
+            this.updateBtn.Size = new System.Drawing.Size(75, 25);
+            this.updateBtn.TabIndex = 18;
+            this.updateBtn.Text = "&Update Card";
+            this.updateBtn.UseVisualStyleBackColor = true;
+            this.updateBtn.Click += new System.EventHandler(this.updateBtn_Click);
             // 
             // CreateEditCardView
             // 
@@ -231,28 +233,28 @@ namespace WindowsFormsApp1
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(594, 321);
             this.ControlBox = false;
-            this.Controls.Add(this.createUpdate);
-            this.Controls.Add(this.delete);
-            this.Controls.Add(this.position);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.finish);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.imgRootDir);
-            this.Controls.Add(this.browse);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.priority);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.note);
-            this.Controls.Add(this.commissionerName);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.pieceName);
+            this.Controls.Add(this.updateBtn);
+            this.Controls.Add(this.deleteBtn);
+            this.Controls.Add(this.positionNumInput);
+            this.Controls.Add(this.positionLabel);
+            this.Controls.Add(this.finishBtn);
+            this.Controls.Add(this.noteLabel);
+            this.Controls.Add(this.imagePreviewLabel);
+            this.Controls.Add(this.imageLabel);
+            this.Controls.Add(this.imageLocationTxtBox);
+            this.Controls.Add(this.browseBtn);
+            this.Controls.Add(this.priorityLabel);
+            this.Controls.Add(this.priorityDropDown);
+            this.Controls.Add(this.commissionerLabel);
+            this.Controls.Add(this.noteTxtBox);
+            this.Controls.Add(this.commissionerNameTxtBox);
+            this.Controls.Add(this.imagePreviewPicBox);
+            this.Controls.Add(this.pieceLabel);
+            this.Controls.Add(this.pieceNameTxtBox);
             this.Name = "CreateEditCardView";
             this.Text = "Edit Commission Information";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.position)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imagePreviewPicBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.positionNumInput)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -260,24 +262,24 @@ namespace WindowsFormsApp1
         #endregion
 
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.TextBox pieceName;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox commissionerName;
-        private System.Windows.Forms.TextBox note;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox priority;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button browse;
-        private System.Windows.Forms.TextBox imgRootDir;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button finish;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.NumericUpDown position;
-        private System.Windows.Forms.Button delete;
-        private System.Windows.Forms.Button createUpdate;
+        private System.Windows.Forms.TextBox pieceNameTxtBox;
+        private System.Windows.Forms.Label pieceLabel;
+        private System.Windows.Forms.PictureBox imagePreviewPicBox;
+        private System.Windows.Forms.TextBox commissionerNameTxtBox;
+        private System.Windows.Forms.TextBox noteTxtBox;
+        private System.Windows.Forms.Label commissionerLabel;
+        private System.Windows.Forms.ComboBox priorityDropDown;
+        private System.Windows.Forms.Label priorityLabel;
+        private System.Windows.Forms.Button browseBtn;
+        private System.Windows.Forms.TextBox imageLocationTxtBox;
+        private System.Windows.Forms.Label imageLabel;
+        private System.Windows.Forms.Label imagePreviewLabel;
+        private System.Windows.Forms.Label noteLabel;
+        private System.Windows.Forms.Button finishBtn;
+        private System.Windows.Forms.Label positionLabel;
+        private System.Windows.Forms.NumericUpDown positionNumInput;
+        private System.Windows.Forms.Button deleteBtn;
+        private System.Windows.Forms.Button updateBtn;
         private System.Windows.Forms.ColorDialog colorDialog1;
     }
 }

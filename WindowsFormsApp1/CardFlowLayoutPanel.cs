@@ -116,7 +116,7 @@ namespace WindowsFormsApp1
                 TextAlign = System.Drawing.ContentAlignment.MiddleCenter
             };
             
-            this.BackColor = Color.Blue;
+            this.BackColor = System.Drawing.Color.Blue;
         }
 
         /*
@@ -193,6 +193,10 @@ namespace WindowsFormsApp1
             this.listXSize = newXSize;
         }
 
+        public void ReducePosition() {
+            this.queuePosition -= 1;
+        }
+
         public String ConvertToCSV()
         {
             String CSVOutput;
@@ -203,6 +207,19 @@ namespace WindowsFormsApp1
                             "," + this.maxFinishedCommissions.ToString() + "," + queuePosition.ToString() + "," + priorityLevel.ToString() + "," + note;
 
             return CSVOutput;
+        }
+
+        public List<String> ConvertToList() {
+            List <String> output = new List<String>();
+
+            output.Add(this.piece.Text);
+            output.Add(this.commissioner.Text);
+            output.Add(this.cardImage.ImageLocation);
+            output.Add(this.queuePosition.ToString());
+            output.Add(this.priorityLevel.ToString());
+            output.Add(this.note);
+
+            return output;
         }
 
         public bool IncrementCommissionsFinished(){

@@ -43,6 +43,24 @@ namespace WindowsFormsApp1
 
         }
 
+        //Delete a commission, no incrementing.
+        public static void deleteCommission(int queue, int position) {
+            switch (queue)
+            {
+                case 0:
+                    topList.DeleteCardAtPosition(position);
+                    break;
+                case 1:
+                    intermediateList.DeleteCardAtPosition(position);
+                    break;
+                case 2:
+                    bottomList.DeleteCardAtPosition(position);
+                    break;
+                default:
+                    break;
+            }
+        }
+
         public static void addCommission(string pieceName, string commissionerName, string note) {
 
 
@@ -99,7 +117,35 @@ namespace WindowsFormsApp1
 
         private void button2_Click(object sender, EventArgs e)
         {
+            Button senderBtn = (Button)sender;
+            if (senderBtn.Text == "Show All Queues")
+            {
+                this.Size = new Size(1143, 900);
+                listContainers.Size = new Size(1100, 800);
+                senderBtn.Text = "Hide Additional Queues";
+                intermediateList.Visible = true;
+                bottomList.Visible = true;
+            }
+            else
+            {
+                this.Size = new Size(400, 900);
+                listContainers.Size = new Size(360, 800);
+                senderBtn.Text = "Show All Queues";
+                intermediateList.Visible = false;
+                bottomList.Visible = false;
+            }
+        }
 
+        private void createCardBtn_Click(object sender, EventArgs e)
+        {
+            CreateEditCardView createForm = new CreateEditCardView();
+            createForm.Show(this);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SettingsForm settings = new SettingsForm();
+            settings.Show(this);
         }
 
         /*

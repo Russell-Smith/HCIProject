@@ -15,8 +15,8 @@ namespace WindowsFormsApp1
 
         public CardListFlowLayoutPanel(int priority)
         {
-            this.Size = new System.Drawing.Size(320, 320);
-            this.Location = new System.Drawing.Point(10 + (priority * 340), 10);
+            this.Size = new System.Drawing.Size(360, 800);
+            this.Location = new System.Drawing.Point((priority * 370), 0);
             this.priority = priority;
             if(this.priority > 0){
                 this.Visible = false;
@@ -57,6 +57,14 @@ namespace WindowsFormsApp1
 
             foreach(CardFlowLayoutPanel card in cardList){
                 
+            }
+        }
+
+        //Usage for Form-Based deletion method.
+        public void DeleteCardAtPosition(int position) {
+            this.cardList.RemoveAt(position);
+            for (int i = position; i < this.cardList.Count; ++i) {
+                cardList.ElementAt(i).ReducePosition();
             }
         }
     }
