@@ -17,7 +17,7 @@ namespace WindowsFormsApp1
         private string pieceNameIn, commissionerNameIn, imgRootDirIn, noteIn;
         private int priorityIn, positionIn;
         private bool isCreateCard;
-
+        
         //Booleans to make sure that information is in the fields.
         private Boolean hasPieceName, hasCommissionerName, hasImgRootDir, hasPriority;
 
@@ -59,10 +59,12 @@ namespace WindowsFormsApp1
         }
 
         //Since there is a String list, we're making an edit to a currently existent card.
-        public CreateEditCardView(List<String> thatListOfCardStuffDude)
+        public CreateEditCardView(CardFlowLayoutPanel cardToEdit)
         {
             InitializeComponent();
-            
+
+            List<String> thatListOfCardStuffDude = cardToEdit.ConvertToList();
+
             this.commissionerNameTxtBox.ReadOnly = true;
             this.pieceNameTxtBox.Text = thatListOfCardStuffDude.ElementAt(0);
             this.commissionerNameTxtBox.Text = thatListOfCardStuffDude.ElementAt(1);
@@ -144,8 +146,11 @@ namespace WindowsFormsApp1
         }
 
         private void textBox_Enter(object sender, EventArgs e) {
-            ((TextBox)sender).Text = "";
-            ((TextBox)sender).ForeColor = Color.Black;
+            if (((TextBox)sender).ForeColor == Color.Gray)
+            {
+                ((TextBox)sender).Text = "";
+                ((TextBox)sender).ForeColor = Color.Black;
+            }
         }
 
         private void commTxtBox_Exit(object sender, EventArgs e) {

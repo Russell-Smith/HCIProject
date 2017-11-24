@@ -62,9 +62,9 @@ namespace WindowsFormsApp1
         }
 
         public static void addCommission(string pieceName, string commissionerName, string note) {
-
-
-            cardFactory.getCardPanelFromInput(pieceName, commissionerName, 2, note);
+            bottomList.Add(cardFactory.getCardPanelFromInput(pieceName, commissionerName, 2, note));
+            foreach(CardFlowLayoutPanel card in bottomList.)
+            
         }
 
         /*

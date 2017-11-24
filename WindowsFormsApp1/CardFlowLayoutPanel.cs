@@ -193,8 +193,32 @@ namespace WindowsFormsApp1
             this.listXSize = newXSize;
         }
 
+        // The update method takes a list ordered in the inputs of the update window:
+        // Piece Name, Image Location, Note, Priority, and Position.
+        public void updateCard(List<String> changes) {
+            this.piece.Text = changes.ElementAt(0);
+            this.cardImage.ImageLocation = changes.ElementAt(1);
+            this.note = changes.ElementAt(2);
+            this.priorityLevel = Int32.Parse(changes.ElementAt(3));
+            this.queuePosition = Int32.Parse(changes.ElementAt(4));
+
+        }
+
         public void ReducePosition() {
             this.queuePosition -= 1;
+        }
+
+        public void IncreasePosition() {
+            this.queuePosition += 1;
+        }
+
+        public void SetPosition(int _position) {
+            this.queuePosition = _position;
+        }
+
+        public int GetPosition()
+        {
+            return this.queuePosition;
         }
 
         public String ConvertToCSV()
