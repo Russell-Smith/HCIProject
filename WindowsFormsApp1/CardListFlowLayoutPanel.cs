@@ -52,11 +52,15 @@ namespace WindowsFormsApp1
             return outputList;
         }
 
+        //  When we add a range, we will set the position of everything, make sure they're all accurate.
+        //  We also ensure that priority is set correctly. A code review will determine the necessity of this.
         public void AddRange(List<CardFlowLayoutPanel> inputCardList){
             this.cardList.AddRange(inputCardList);
 
-            foreach(CardFlowLayoutPanel card in cardList){
-                
+            for (int i = 0; i < cardList.Count; ++i)
+            {
+                cardList.ElementAt(i).SetPosition(i);
+                cardList.ElementAt(i).SetPriority(i);
             }
         }
 
@@ -65,7 +69,7 @@ namespace WindowsFormsApp1
             inputCard.SetPosition(this.cardList.Count);
         }
 
-        public void Insert(CardFlowLayoutPanel inputCard) {
+        public void Insert(CardFlowLayoutPanel inputCard, int index) {
 
         }
 

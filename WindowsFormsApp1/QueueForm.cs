@@ -65,6 +65,50 @@ namespace WindowsFormsApp1
             bottomList.Add(cardFactory.getCardPanelFromInput(pieceName, commissionerName, 2, note));
         }
 
+        //The payload we're having delivered to us will contain information in order:
+        //  Piece Name - String - 0th Element
+        //  Commissioner Name - String - 1st Element
+        //  Image Location - String - 2nd Element
+        //  Note - String - 3rd Element
+        //  Priority Level - Int32 as a String - Requires Cast - 4th Element
+        //  Position - Int32 as a String - Requires Cast - Acts as card's index in list. Use as argument
+        //  two in the call to the CardListFlowLayoutPanel - 5th Element <- Bruce Willis is not a proper value.
+        public static void insertCommission(List<String> cardPayload) {
+            switch (cardPayload.ElementAt(4))
+            {
+                case "0":
+                    topList.Insert(cardFactory.getCardPanelFromInput(
+                        cardPayload.ElementAt(0),
+                        cardPayload.ElementAt(1),
+                        cardPayload.ElementAt(2),
+                        cardPayload.ElementAt(3),
+                        Int32.Parse(cardPayload.ElementAt(4)),
+                        Int32.Parse(cardPayload.ElementAt(5))
+                        ), Int32.Parse(cardPayload.ElementAt(5)));
+                    break;
+                case "1":
+                    intermediateList.Insert(cardFactory.getCardPanelFromInput(
+                        cardPayload.ElementAt(0),
+                        cardPayload.ElementAt(1),
+                        cardPayload.ElementAt(2),
+                        cardPayload.ElementAt(3),
+                        Int32.Parse(cardPayload.ElementAt(4)),
+                        Int32.Parse(cardPayload.ElementAt(5))
+                        ), Int32.Parse(cardPayload.ElementAt(5)));
+                    break;
+                case "2":
+                    bottomList.Insert(cardFactory.getCardPanelFromInput(
+                        cardPayload.ElementAt(0),
+                        cardPayload.ElementAt(1),
+                        cardPayload.ElementAt(2),
+                        cardPayload.ElementAt(3),
+                        Int32.Parse(cardPayload.ElementAt(4)),
+                        Int32.Parse(cardPayload.ElementAt(5))
+                        ), Int32.Parse(cardPayload.ElementAt(5)));
+                    break;
+            }
+        }
+
         /*
         public static CardListFlowLayoutPanel getQueue(int priority)
         {
@@ -261,7 +305,12 @@ namespace WindowsFormsApp1
             {
             return new CardFlowLayoutPanel(title, commissioner, priority, note);
             }
+
+        public CardFlowLayoutPanel getCardPanelFromInput(string title, string commissioner, string imageURL, string note, int priority, int position) {
+            return new CardFlowLayoutPanel(title, commissioner, imageURL, note, priority, position);
         }
+    }
+
 
     /*
 

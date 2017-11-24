@@ -69,6 +69,7 @@ namespace WindowsFormsApp1
             // pieceLabel
             // 
             this.pieceLabel.AutoSize = true;
+            this.pieceLabel.Enabled = false;
             this.pieceLabel.Location = new System.Drawing.Point(196, 9);
             this.pieceLabel.Name = "pieceLabel";
             this.pieceLabel.Size = new System.Drawing.Size(68, 13);
@@ -89,7 +90,7 @@ namespace WindowsFormsApp1
             this.commissionerNameTxtBox.Location = new System.Drawing.Point(199, 75);
             this.commissionerNameTxtBox.Name = "commissionerNameTxtBox";
             this.commissionerNameTxtBox.Size = new System.Drawing.Size(380, 20);
-            this.commissionerNameTxtBox.TabIndex = 3;
+            this.commissionerNameTxtBox.TabIndex = 1;
             this.commissionerNameTxtBox.TextChanged += new System.EventHandler(this.commissionerName_TextChanged);
             // 
             // noteTxtBox
@@ -103,6 +104,7 @@ namespace WindowsFormsApp1
             // commissionerLabel
             // 
             this.commissionerLabel.AutoSize = true;
+            this.commissionerLabel.Enabled = false;
             this.commissionerLabel.Location = new System.Drawing.Point(196, 59);
             this.commissionerLabel.Name = "commissionerLabel";
             this.commissionerLabel.Size = new System.Drawing.Size(105, 13);
@@ -122,7 +124,7 @@ namespace WindowsFormsApp1
             this.priorityDropDown.Name = "priorityDropDown";
             this.priorityDropDown.Size = new System.Drawing.Size(72, 21);
             this.priorityDropDown.Sorted = true;
-            this.priorityDropDown.TabIndex = 6;
+            this.priorityDropDown.TabIndex = 5;
             this.priorityDropDown.SelectedIndexChanged += new System.EventHandler(this.priority_SelectedIndexChanged);
             // 
             // priorityLabel
@@ -131,7 +133,7 @@ namespace WindowsFormsApp1
             this.priorityLabel.Location = new System.Drawing.Point(431, 218);
             this.priorityLabel.Name = "priorityLabel";
             this.priorityLabel.Size = new System.Drawing.Size(70, 13);
-            this.priorityLabel.TabIndex = 7;
+            this.priorityLabel.TabIndex = 10;
             this.priorityLabel.Text = "Priority Level:";
             // 
             // browseBtn
@@ -139,7 +141,7 @@ namespace WindowsFormsApp1
             this.browseBtn.Location = new System.Drawing.Point(507, 151);
             this.browseBtn.Name = "browseBtn";
             this.browseBtn.Size = new System.Drawing.Size(72, 25);
-            this.browseBtn.TabIndex = 8;
+            this.browseBtn.TabIndex = 3;
             this.browseBtn.Text = "&Browse";
             this.browseBtn.UseVisualStyleBackColor = true;
             this.browseBtn.Click += new System.EventHandler(this.browse_Click);
@@ -150,12 +152,13 @@ namespace WindowsFormsApp1
             this.imageLocationTxtBox.Location = new System.Drawing.Point(199, 125);
             this.imageLocationTxtBox.Name = "imageLocationTxtBox";
             this.imageLocationTxtBox.Size = new System.Drawing.Size(380, 20);
-            this.imageLocationTxtBox.TabIndex = 9;
+            this.imageLocationTxtBox.TabIndex = 2;
             this.imageLocationTxtBox.TextChanged += new System.EventHandler(this.imgRootDir_TextChanged);
             // 
             // imageLabel
             // 
             this.imageLabel.AutoSize = true;
+            this.imageLabel.Enabled = false;
             this.imageLabel.Location = new System.Drawing.Point(196, 109);
             this.imageLabel.Name = "imageLabel";
             this.imageLabel.Size = new System.Drawing.Size(39, 13);
@@ -166,6 +169,7 @@ namespace WindowsFormsApp1
             // imagePreviewLabel
             // 
             this.imagePreviewLabel.AutoSize = true;
+            this.imagePreviewLabel.Enabled = false;
             this.imagePreviewLabel.Location = new System.Drawing.Point(12, 9);
             this.imagePreviewLabel.Name = "imagePreviewLabel";
             this.imagePreviewLabel.Size = new System.Drawing.Size(80, 13);
@@ -186,7 +190,7 @@ namespace WindowsFormsApp1
             this.finishBtn.Location = new System.Drawing.Point(361, 287);
             this.finishBtn.Name = "finishBtn";
             this.finishBtn.Size = new System.Drawing.Size(105, 25);
-            this.finishBtn.TabIndex = 13;
+            this.finishBtn.TabIndex = 8;
             this.finishBtn.Text = "&Finish Commission";
             this.finishBtn.UseVisualStyleBackColor = true;
             this.finishBtn.Click += new System.EventHandler(this.finish_Click);
@@ -205,14 +209,14 @@ namespace WindowsFormsApp1
             this.positionNumInput.Location = new System.Drawing.Point(507, 242);
             this.positionNumInput.Name = "positionNumInput";
             this.positionNumInput.Size = new System.Drawing.Size(72, 20);
-            this.positionNumInput.TabIndex = 16;
+            this.positionNumInput.TabIndex = 6;
             // 
             // deleteBtn
             // 
             this.deleteBtn.Location = new System.Drawing.Point(472, 287);
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.Size = new System.Drawing.Size(110, 25);
-            this.deleteBtn.TabIndex = 17;
+            this.deleteBtn.TabIndex = 9;
             this.deleteBtn.Text = "&Delete Commission";
             this.deleteBtn.UseVisualStyleBackColor = true;
             this.deleteBtn.Click += new System.EventHandler(this.delete_Click);
@@ -222,7 +226,7 @@ namespace WindowsFormsApp1
             this.updateBtn.Location = new System.Drawing.Point(15, 287);
             this.updateBtn.Name = "updateBtn";
             this.updateBtn.Size = new System.Drawing.Size(75, 25);
-            this.updateBtn.TabIndex = 18;
+            this.updateBtn.TabIndex = 7;
             this.updateBtn.Text = "&Update Card";
             this.updateBtn.UseVisualStyleBackColor = true;
             this.updateBtn.Click += new System.EventHandler(this.updateBtn_Click);

@@ -18,7 +18,7 @@ namespace WindowsFormsApp1
 
         private string note;
         private int commissionsFinishedCounter, queuePosition, priorityLevel, maxFinishedCommissions;
-        private float imageXSize, imageYSize;
+        //private float imageXSize, imageYSize;
         private float listXSize;
 
         // Title, Commissioner, and imageURL are strings passed to visually impact the card.
@@ -91,7 +91,47 @@ namespace WindowsFormsApp1
                 TextAlign = System.Drawing.ContentAlignment.MiddleCenter
             };
         }
-        
+
+        //Temporary constructor for use with the CardCreationForm for now.
+        //This fills in NON-FINAL VALUES.
+        //IF THIS IS IN THE FINAL PRESENTATION, WE DUN GOOFED.
+        //WE HAVE TWO OF THESE NOW.
+        //I AM A WONDERFUL DEVELOPER.
+        public CardFlowLayoutPanel(string title, string commissioner, string imgURL, string note, int priority, int position)
+        {
+            this.commissionsFinishedCounter = 0;
+            this.priorityLevel = priority;
+            if (priority == 0)
+            {
+                this.maxFinishedCommissions = -1;
+            }
+            else
+            {
+                this.maxFinishedCommissions = priority * 5;
+            }
+
+            this.note = note;
+            this.cardImage = new PictureBox
+            {
+                ImageLocation = imgURL,
+                SizeMode = PictureBoxSizeMode.StretchImage
+            };
+
+            this.queuePosition = position;
+
+            this.piece = new Label()
+            {
+                Text = title,
+                TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+            };
+
+            this.commissioner = new Label()
+            {
+                Text = commissioner,
+                TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+            };
+        }
+
         //This is for testing, and does not represent ANY FORM OF TRUE CARD.
         //Remove this after testing functionality of layout methods.
         public CardFlowLayoutPanel(){
@@ -212,13 +252,23 @@ namespace WindowsFormsApp1
             this.queuePosition += 1;
         }
 
-        public void SetPosition(int _position) {
-            this.queuePosition = _position;
+        //Intentional typo. We are imposing, after all.
+        public void SetPosition(int imPosition) {
+            this.queuePosition = imPosition;
         }
 
         public int GetPosition()
         {
             return this.queuePosition;
+        }
+
+        public void SetPriority(int priority) {
+            this.priorityLevel = priority;
+        }
+
+        public int GetPriority()
+        {
+            return this.priorityLevel;
         }
 
         public String ConvertToCSV()

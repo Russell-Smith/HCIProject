@@ -24,6 +24,7 @@ namespace WindowsFormsApp1 {
             Properties.Settings.Default.alwaysOnTop = alwaysOnTopChkBox.Checked;
             Properties.Settings.Default.darkMode = darkModeChkBox.Checked;
             Properties.Settings.Default.showConfirmationOnFinish = confirmDialogChkBox.Checked;
+            this.Owner.TopMost = Properties.Settings.Default.alwaysOnTop;
         }
     }
 }
