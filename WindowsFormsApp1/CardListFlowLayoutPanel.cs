@@ -65,6 +65,10 @@ namespace WindowsFormsApp1
             inputCard.SetPosition(this.cardList.Count);
         }
 
+        public void Insert(CardFlowLayoutPanel inputCard) {
+
+        }
+
         //Usage for Form-Based deletion method.
         public void DeleteCardAtPosition(int position) {
             this.cardList.RemoveAt(position);
