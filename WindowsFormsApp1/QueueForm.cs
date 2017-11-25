@@ -132,7 +132,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        //  Screaming with my hair on fire.
+
         //  Used to update a particular commission.
         //  Called by the CreateEditCardView
         public static void updateCommission(List<String> updatedCard, List<String> originalCard) {
