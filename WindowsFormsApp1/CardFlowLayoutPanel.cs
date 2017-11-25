@@ -252,6 +252,19 @@ namespace WindowsFormsApp1
             this.queuePosition += 1;
         }
 
+        public void SetName(string inName) {
+            this.piece.Text = inName;
+        }
+
+        public void SetImageURL(string imgURL) {
+            this.cardImage.ImageLocation = imgURL;
+        }
+
+        public void SetNote(string inNote)
+        {
+            this.note = inNote;
+        }
+
         //Intentional typo. We are imposing, after all.
         public void SetPosition(int imPosition) {
             this.queuePosition = imPosition;

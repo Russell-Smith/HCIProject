@@ -13,10 +13,12 @@ namespace WindowsFormsApp1
 
     public partial class CreateEditCardView : Form
     {
+        //The card handed to us, if it exists, in List Form - no need to hand a UI element with it.
+        List<String> cardToEditIfExistant;
+
         //Input storage variables
         private string pieceNameIn, commissionerNameIn, imgRootDirIn, noteIn;
         private int priorityIn, positionIn;
-        private bool isCreateCard;
         
         //Booleans to make sure that information is in the fields.
         private Boolean hasPieceName, hasCommissionerName, hasImgRootDir, hasPriority;
@@ -25,7 +27,6 @@ namespace WindowsFormsApp1
         //Ironically, we change default values. Huh.
         public CreateEditCardView()
         {
-            this.isCreateCard = true;
             InitializeComponent();
 
             this.Text = "Create New Commission";
@@ -192,7 +193,8 @@ namespace WindowsFormsApp1
 
         private void updateBtn_Click(object sender, EventArgs e)
         {
-
+            // Needs a method to call to that will provide the information in a List to update the appropriate card.
+            // Es tut mir leid.
         }
 
         private void cancelBtn_Click(object sender, EventArgs e) {
@@ -233,7 +235,7 @@ namespace WindowsFormsApp1
         //Will delete the card from the layout panel and not increment all other cards
         private void delete_Click(object sender, EventArgs e)
         {
-
+            QueueForm.deleteCommission(Int32.Parse(cardToEditIfExistant.ElementAt(4)), Int32.Parse(cardToEditIfExistant.ElementAt(3)));
         }
 
         private void createUpdate_Click(object sender, EventArgs e)
@@ -251,7 +253,7 @@ namespace WindowsFormsApp1
                 //All necessary fields must be filled
                 if (!hasPieceName || !hasCommissionerName || !hasImgRootDir || !hasPriority)
                 {
-                    string message = "The following items need to be entered: \n";
+                    string message = "The following items need to be entered:";
 
                     if (!hasPieceName) {
                         message += "\nPiece Name";

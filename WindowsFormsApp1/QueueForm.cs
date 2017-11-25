@@ -109,6 +109,74 @@ namespace WindowsFormsApp1
             }
         }
 
+        //  Screaming with my hair on fire.
+        //  Used to update a particular commission.
+        //  Called by the CreateEditCardView
+        //  Also, in future, please rename the input list. And especially the card formerly known as the Card To Be Updated With Updated Information For Updating The Card Which Is To Be Updated
+        //  I'm just flouting line length recommendations this morning.
+        public static void updateCommission(List<String> cardToBeUpdatedWithUpdatedInformationForUpdatingTheCardWhichIsToBeUpdated, List<String> theCardFormerlyKnownAsCardToBeUpdatedWithUpdatedInformationForUpdatingTheCardWhichIsToBeUpdated) {
+
+            CardFlowLayoutPanel tempCardStorageLocation;
+            int oldPriority, newPriority, oldPosition, newPosition;
+            string newName, newImageURL, newNote;
+
+            oldPriority = Int32.Parse(theCardFormerlyKnownAsCardToBeUpdatedWithUpdatedInformationForUpdatingTheCardWhichIsToBeUpdated.ElementAt(4));
+            newPriority = Int32.Parse(cardToBeUpdatedWithUpdatedInformationForUpdatingTheCardWhichIsToBeUpdated.ElementAt(4));
+            oldPosition = Int32.Parse(theCardFormerlyKnownAsCardToBeUpdatedWithUpdatedInformationForUpdatingTheCardWhichIsToBeUpdated.ElementAt(3));
+            newPosition = Int32.Parse(cardToBeUpdatedWithUpdatedInformationForUpdatingTheCardWhichIsToBeUpdated.ElementAt(3));
+            newName = cardToBeUpdatedWithUpdatedInformationForUpdatingTheCardWhichIsToBeUpdated.ElementAt(0);
+            newImageURL = cardToBeUpdatedWithUpdatedInformationForUpdatingTheCardWhichIsToBeUpdated.ElementAt(1);
+            newNote = cardToBeUpdatedWithUpdatedInformationForUpdatingTheCardWhichIsToBeUpdated.ElementAt(2);
+
+            if (newPriority != oldPriority)
+            {
+                // The Card's Priorities have changed.
+                switch (oldPriority)
+                {
+                    case 0:
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    default:
+                        break;
+
+                }
+            }
+            else
+            {
+                // The Card's declared priority is the same.
+
+                if (newPosition != oldPosition)
+                {
+                    //  The Card's position has changed, though.
+                    //  These are all Moves, which requires acquiring the original, removing it at the old index, and then inserting it at the new index.
+                    switch (newPriority){
+                        case 0:
+                            tempCardStorageLocation = topList.ElementAt(oldPosition);
+                            tempCardStorageLocation.SetName(newName);
+                            tempCardStorageLocation.SetImageURL(newImageURL);
+                            tempCardStorageLocation.SetNote(newNote);
+                            break;
+                        case 1:
+                            tempCardStorageLocation = intermediateList.ElementAt(oldPosition);
+                            break;
+                        case 2:
+                            tempCardStorageLocation = bottomList.ElementAt(oldPosition);
+                            break;
+                        default:
+                            //lolwut
+                            break;
+                    }
+                }
+                else
+                {
+                    //  In place update. Don't worry about changing its position.
+                }
+            }
+        }
+
         /*
         public static CardListFlowLayoutPanel getQueue(int priority)
         {

@@ -60,13 +60,17 @@ namespace WindowsFormsApp1
             for (int i = 0; i < cardList.Count; ++i)
             {
                 cardList.ElementAt(i).SetPosition(i);
-                cardList.ElementAt(i).SetPriority(i);
+                cardList.ElementAt(i).SetPriority(priority);
             }
         }
 
         public void Add(CardFlowLayoutPanel inputCard) {
             this.cardList.Add(inputCard);
             inputCard.SetPosition(this.cardList.Count);
+        }
+
+        public CardFlowLayoutPanel ElementAt(int index) {
+            return this.cardList.ElementAt(index);
         }
 
         public void Insert(CardFlowLayoutPanel inputCard, int index) {

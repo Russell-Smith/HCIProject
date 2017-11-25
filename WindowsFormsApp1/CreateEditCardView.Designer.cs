@@ -119,7 +119,7 @@ namespace WindowsFormsApp1
             "1",
             "2",
             "3"});
-            this.priorityDropDown.Location = new System.Drawing.Point(507, 215);
+            this.priorityDropDown.Location = new System.Drawing.Point(507, 196);
             this.priorityDropDown.MaxDropDownItems = 3;
             this.priorityDropDown.Name = "priorityDropDown";
             this.priorityDropDown.Size = new System.Drawing.Size(72, 21);
@@ -130,7 +130,7 @@ namespace WindowsFormsApp1
             // priorityLabel
             // 
             this.priorityLabel.AutoSize = true;
-            this.priorityLabel.Location = new System.Drawing.Point(431, 218);
+            this.priorityLabel.Location = new System.Drawing.Point(431, 199);
             this.priorityLabel.Name = "priorityLabel";
             this.priorityLabel.Size = new System.Drawing.Size(70, 13);
             this.priorityLabel.TabIndex = 10;
@@ -198,7 +198,7 @@ namespace WindowsFormsApp1
             // positionLabel
             // 
             this.positionLabel.AutoSize = true;
-            this.positionLabel.Location = new System.Drawing.Point(454, 244);
+            this.positionLabel.Location = new System.Drawing.Point(454, 225);
             this.positionLabel.Name = "positionLabel";
             this.positionLabel.Size = new System.Drawing.Size(47, 13);
             this.positionLabel.TabIndex = 15;
@@ -206,7 +206,7 @@ namespace WindowsFormsApp1
             // 
             // positionNumInput
             // 
-            this.positionNumInput.Location = new System.Drawing.Point(507, 242);
+            this.positionNumInput.Location = new System.Drawing.Point(507, 223);
             this.positionNumInput.Name = "positionNumInput";
             this.positionNumInput.Size = new System.Drawing.Size(72, 20);
             this.positionNumInput.TabIndex = 6;
