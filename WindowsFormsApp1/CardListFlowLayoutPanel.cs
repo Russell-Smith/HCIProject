@@ -87,9 +87,11 @@ namespace WindowsFormsApp1
             CardFlowLayoutPanel tempCard = cardList.ElementAt(oldIndex);
             cardList.RemoveAt(oldIndex);
             cardList.Insert(newIndex, tempCard);
-            for (int i = newIndex + 1; i < cardList.Count; ++i)
+            //  This currently increases positions of all cards behind a card. Let's just index them all to the list.
+            //  It's slow. It's literally n. Fuck it.
+            for (int i = 0; i < cardList.Count; ++i)
             {
-                this.cardList.ElementAt(i).IncreasePosition();
+                this.cardList.ElementAt(i).SetPosition(i);
             }
         }
 
