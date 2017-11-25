@@ -15,6 +15,7 @@ namespace WindowsFormsApp1
         public static CardListFlowLayoutPanel topList;
         public static CardListFlowLayoutPanel intermediateList;
         public static CardListFlowLayoutPanel bottomList;
+        public static List<CardFlowLayoutPanel> completedCards;
         public static CardFileFactory fileFactory;
         public static CardFactory cardFactory;
 
@@ -25,15 +26,33 @@ namespace WindowsFormsApp1
             bottomList = new CardListFlowLayoutPanel(2);
             fileFactory = new CardFileFactory();
             cardFactory = new CardFactory();
+            completedCards = new List<CardFlowLayoutPanel>();
             InitializeComponent();
             listContainers.BackColor = Color.Black;
             this.TopMost = Properties.Settings.Default.alwaysOnTop;
         }
 
-        //Once a commission is finished, all cards will increment by one
-        public static void finishCommission()
+        //  Once a commission is finished, all cards will increment by one
+        //  We place the finished card, as a layoutpanel, in a list to be viewed if we want it.
+        public static void finishCommission(int queuePriority, int queuePosition)
         {
             List<CardFlowLayoutPanel> pushToTopList = new List<CardFlowLayoutPanel>();
+
+            switch (queuePriority)
+            {
+                case 0:
+                    completedCards.Add(topList.ElementAt(queuePosition));
+                    topList.DeleteCardAtPosition(queuePosition);
+                    break;
+                case 1:
+                    completedCards.Add(intermediateList.ElementAt(queuePosition));
+                    intermediateList.DeleteCardAtPosition(queuePosition);
+                    break;
+                case 2:
+                    completedCards.Add(bottomList.ElementAt(queuePosition));
+                    bottomList.DeleteCardAtPosition(queuePosition);
+                    break;
+            }
 
             topList.CardIncrement();
             pushToTopList.AddRange(intermediateList.CardIncrement());

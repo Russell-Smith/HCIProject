@@ -52,6 +52,8 @@ namespace WindowsFormsApp1
 
             this.imagePreviewPicBox.DragEnter += new System.Windows.Forms.DragEventHandler(this.pictureBox1_DragEnter);
             this.imagePreviewPicBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox1_DragDrop);
+            this.updateBtn.Click -= this.updateBtn_Click;
+            this.deleteBtn.Click -= this.delete_Click;
             this.updateBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             this.deleteBtn.Click += new System.EventHandler(this.clear_Click);
 
@@ -247,6 +249,7 @@ namespace WindowsFormsApp1
                 {
                     QueueForm.updateCommission(newCard, oldCard);
                     this.Close();
+                    this.Dispose();
                 }
                 else
                 {
@@ -258,6 +261,7 @@ namespace WindowsFormsApp1
                     {
                         QueueForm.updateCommission(newCard, oldCard);
                         this.Close();
+                        this.Dispose();
                     }
                 }
             }
@@ -299,6 +303,7 @@ namespace WindowsFormsApp1
                 
                 QueueForm.addCommissionFromList(newCard);
                 this.Close();
+                this.Dispose();
             }
             else
             {
@@ -312,6 +317,7 @@ namespace WindowsFormsApp1
 
         private void cancelBtn_Click(object sender, EventArgs e) {
             this.Close();
+            this.Dispose();
         }
 
         private void commissionerName_TextChanged(object sender, EventArgs e)
