@@ -135,23 +135,20 @@ namespace WindowsFormsApp1
         //  Screaming with my hair on fire.
         //  Used to update a particular commission.
         //  Called by the CreateEditCardView
-        //  Also, in future, please rename the input list. And especially the card formerly known as the Card To Be Updated With Updated Information For Updating The Card Which Is To Be Updated
-        //  I'm just flouting line length recommendations this morning.
-        public static void updateCommission(List<String> cardToBeUpdatedWithUpdatedInformationForUpdatingTheCardWhichIsToBeUpdated, List<String> theCardFormerlyKnownAsCardToBeUpdatedWithUpdatedInformationForUpdatingTheCardWhichIsToBeUpdated) {
+        public static void updateCommission(List<String> updatedCard, List<String> originalCard) {
 
             CardFlowLayoutPanel tempCardStorageLocation;
             int oldPriority, newPriority, oldPosition, newPosition;
             string newName, newImageURL, newNote;
 
             //  This block takes the card formerly known as prince and the card becoming known as prince and parses all of their information. It's just easier overall.
-            //  Should have picked better variable names.
-            oldPriority = Int32.Parse(theCardFormerlyKnownAsCardToBeUpdatedWithUpdatedInformationForUpdatingTheCardWhichIsToBeUpdated.ElementAt(4));
-            newPriority = Int32.Parse(cardToBeUpdatedWithUpdatedInformationForUpdatingTheCardWhichIsToBeUpdated.ElementAt(4));
-            oldPosition = Int32.Parse(theCardFormerlyKnownAsCardToBeUpdatedWithUpdatedInformationForUpdatingTheCardWhichIsToBeUpdated.ElementAt(3));
-            newPosition = Int32.Parse(cardToBeUpdatedWithUpdatedInformationForUpdatingTheCardWhichIsToBeUpdated.ElementAt(3));
-            newName = cardToBeUpdatedWithUpdatedInformationForUpdatingTheCardWhichIsToBeUpdated.ElementAt(0);
-            newImageURL = cardToBeUpdatedWithUpdatedInformationForUpdatingTheCardWhichIsToBeUpdated.ElementAt(1);
-            newNote = cardToBeUpdatedWithUpdatedInformationForUpdatingTheCardWhichIsToBeUpdated.ElementAt(2);
+            oldPriority = Int32.Parse(originalCard.ElementAt(4));
+            newPriority = Int32.Parse(updatedCard.ElementAt(4));
+            oldPosition = Int32.Parse(originalCard.ElementAt(3));
+            newPosition = Int32.Parse(updatedCard.ElementAt(3));
+            newName = updatedCard.ElementAt(0);
+            newImageURL = updatedCard.ElementAt(1);
+            newNote = updatedCard.ElementAt(2);
 
             //  Assessing how we need to change the card's location and position. <- Synonyms, amirite?
             if (newPriority != oldPriority)
