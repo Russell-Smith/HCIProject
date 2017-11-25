@@ -116,9 +116,9 @@ namespace WindowsFormsApp1
             this.priorityDropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.priorityDropDown.FormattingEnabled = true;
             this.priorityDropDown.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3"});
+            "High",
+            "Low",
+            "Middle"});
             this.priorityDropDown.Location = new System.Drawing.Point(507, 196);
             this.priorityDropDown.MaxDropDownItems = 3;
             this.priorityDropDown.Name = "priorityDropDown";

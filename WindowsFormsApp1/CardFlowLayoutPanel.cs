@@ -289,9 +289,9 @@ namespace WindowsFormsApp1
             String CSVOutput;
 
             //We're outputting a CSV file to
-            CSVOutput = this.piece.Text + "," + this.commissioner.Text + "," + 
-                            this.cardImage.ImageLocation + "," + this.commissionsFinishedCounter.ToString() +
-                            "," + this.maxFinishedCommissions.ToString() + "," + queuePosition.ToString() + "," + priorityLevel.ToString() + "," + note;
+            CSVOutput = this.piece.Text + "\",\"" + this.commissioner.Text + "\",\"" + 
+                            this.cardImage.ImageLocation + "\",\"" + this.commissionsFinishedCounter.ToString() +
+                            "\",\"" + this.maxFinishedCommissions.ToString() + "\",\"" + queuePosition.ToString() + "\",\"" + priorityLevel.ToString() + "\",\"" + note;
 
             return CSVOutput;
         }

@@ -65,6 +65,10 @@ namespace WindowsFormsApp1
             bottomList.Add(cardFactory.getCardPanelFromInput(pieceName, commissionerName, 2, note));
         }
 
+        public static void addCommissionFromList(List<string> inputList) {
+
+        }
+
         //The payload we're having delivered to us will contain information in order:
         //  Piece Name - String - 0th Element
         //  Commissioner Name - String - 1st Element
@@ -120,6 +124,8 @@ namespace WindowsFormsApp1
             int oldPriority, newPriority, oldPosition, newPosition;
             string newName, newImageURL, newNote;
 
+            //  This block takes the card formerly known as prince and the card becoming known as prince and parses all of their information. It's just easier overall.
+            //  Should have picked better variable names.
             oldPriority = Int32.Parse(theCardFormerlyKnownAsCardToBeUpdatedWithUpdatedInformationForUpdatingTheCardWhichIsToBeUpdated.ElementAt(4));
             newPriority = Int32.Parse(cardToBeUpdatedWithUpdatedInformationForUpdatingTheCardWhichIsToBeUpdated.ElementAt(4));
             oldPosition = Int32.Parse(theCardFormerlyKnownAsCardToBeUpdatedWithUpdatedInformationForUpdatingTheCardWhichIsToBeUpdated.ElementAt(3));
@@ -128,16 +134,97 @@ namespace WindowsFormsApp1
             newImageURL = cardToBeUpdatedWithUpdatedInformationForUpdatingTheCardWhichIsToBeUpdated.ElementAt(1);
             newNote = cardToBeUpdatedWithUpdatedInformationForUpdatingTheCardWhichIsToBeUpdated.ElementAt(2);
 
+            //  Assessing how we need to change the card's location and position. <- Synonyms, amirite?
             if (newPriority != oldPriority)
             {
                 // The Card's Priorities have changed.
                 switch (oldPriority)
                 {
                     case 0:
+                        // Top priority card is changing lanes.
+                        switch (newPriority)
+                        {
+                            case 1:
+                                tempCardStorageLocation = topList.ElementAt(oldPosition);
+                                tempCardStorageLocation.SetName(newName);
+                                tempCardStorageLocation.SetImageURL(newImageURL);
+                                tempCardStorageLocation.SetNote(newNote);
+                                tempCardStorageLocation.SetPosition(newPosition);
+                                tempCardStorageLocation.SetPriority(newPriority);
+                                intermediateList.Insert(tempCardStorageLocation, newPosition);
+                                topList.DeleteCardAtPosition(oldPosition); // <- We have deleted the old reference, and now are expecting only one reference.
+                                break;
+                            case 2:
+                                tempCardStorageLocation = topList.ElementAt(oldPosition);
+                                tempCardStorageLocation.SetName(newName);
+                                tempCardStorageLocation.SetImageURL(newImageURL);
+                                tempCardStorageLocation.SetNote(newNote);
+                                tempCardStorageLocation.SetPosition(newPosition);
+                                tempCardStorageLocation.SetPriority(newPriority);
+                                bottomList.Insert(tempCardStorageLocation, newPosition);
+                                topList.DeleteCardAtPosition(oldPosition); // <- We have deleted the old reference, and now are expecting only one reference.
+                                break;
+                            default:
+                                // Once again, lolwut.
+                                break;
+                        }
+
                         break;
                     case 1:
+                        //  Mid priority card has its blinker on.
+                        switch (newPriority)
+                        {
+                            case 0:
+                                tempCardStorageLocation = intermediateList.ElementAt(oldPosition);
+                                tempCardStorageLocation.SetName(newName);
+                                tempCardStorageLocation.SetImageURL(newImageURL);
+                                tempCardStorageLocation.SetNote(newNote);
+                                tempCardStorageLocation.SetPosition(newPosition);
+                                tempCardStorageLocation.SetPriority(newPriority);
+                                topList.Insert(tempCardStorageLocation, newPosition);
+                                intermediateList.DeleteCardAtPosition(oldPosition); // <- We have deleted the old reference, and now are expecting only one reference.
+                                break;
+                            case 2:
+                                tempCardStorageLocation = intermediateList.ElementAt(oldPosition);
+                                tempCardStorageLocation.SetName(newName);
+                                tempCardStorageLocation.SetImageURL(newImageURL);
+                                tempCardStorageLocation.SetNote(newNote);
+                                tempCardStorageLocation.SetPosition(newPosition);
+                                tempCardStorageLocation.SetPriority(newPriority);
+                                bottomList.Insert(tempCardStorageLocation, newPosition);
+                                intermediateList.DeleteCardAtPosition(oldPosition); // <- We have deleted the old reference, and now are expecting only one reference.
+                                break;
+                            default:
+                                break;
+                        }
                         break;
                     case 2:
+                        //  Some proletariat commission feels a compulsion to rise in the ranks. Quaint.
+                        switch (newPriority)
+                        {
+                            case 0:
+                                tempCardStorageLocation = bottomList.ElementAt(oldPosition);
+                                tempCardStorageLocation.SetName(newName);
+                                tempCardStorageLocation.SetImageURL(newImageURL);
+                                tempCardStorageLocation.SetNote(newNote);
+                                tempCardStorageLocation.SetPosition(newPosition);
+                                tempCardStorageLocation.SetPriority(newPriority);
+                                topList.Insert(tempCardStorageLocation, newPosition);
+                                bottomList.DeleteCardAtPosition(oldPosition); // <- We have deleted the old reference, and now are expecting only one reference.
+                                break;
+                            case 1:
+                                tempCardStorageLocation = bottomList.ElementAt(oldPosition);
+                                tempCardStorageLocation.SetName(newName);
+                                tempCardStorageLocation.SetImageURL(newImageURL);
+                                tempCardStorageLocation.SetNote(newNote);
+                                tempCardStorageLocation.SetPosition(newPosition);
+                                tempCardStorageLocation.SetPriority(newPriority);
+                                intermediateList.Insert(tempCardStorageLocation, newPosition);
+                                bottomList.DeleteCardAtPosition(oldPosition); // <- We have deleted the old reference, and now are expecting only one reference.
+                                break;
+                            default:
+                                break;
+                        }
                         break;
                     default:
                         break;
@@ -158,12 +245,24 @@ namespace WindowsFormsApp1
                             tempCardStorageLocation.SetName(newName);
                             tempCardStorageLocation.SetImageURL(newImageURL);
                             tempCardStorageLocation.SetNote(newNote);
+                            tempCardStorageLocation.SetPosition(newPosition);
+                            topList.MoveCard(oldPosition, newPosition);  // <- We have a reference, but the list itself took care of position change, since it was an internal move.
                             break;
                         case 1:
                             tempCardStorageLocation = intermediateList.ElementAt(oldPosition);
+                            tempCardStorageLocation.SetName(newName);
+                            tempCardStorageLocation.SetImageURL(newImageURL);
+                            tempCardStorageLocation.SetNote(newNote);
+                            tempCardStorageLocation.SetPosition(newPosition);
+                            intermediateList.MoveCard(oldPosition, newPosition);  // <- We have a reference, but the list itself took care of position change, since it was an internal move.
                             break;
                         case 2:
                             tempCardStorageLocation = bottomList.ElementAt(oldPosition);
+                            tempCardStorageLocation.SetName(newName);
+                            tempCardStorageLocation.SetImageURL(newImageURL);
+                            tempCardStorageLocation.SetNote(newNote);
+                            tempCardStorageLocation.SetPosition(newPosition);
+                            bottomList.MoveCard(oldPosition, newPosition);  // <- We have a reference, but the list itself took care of the position change, since it was an internal move.
                             break;
                         default:
                             //lolwut
@@ -173,6 +272,30 @@ namespace WindowsFormsApp1
                 else
                 {
                     //  In place update. Don't worry about changing its position.
+                    switch (newPriority)
+                    {
+                        case 0:
+                            tempCardStorageLocation = topList.ElementAt(oldPosition);
+                            tempCardStorageLocation.SetName(newName);
+                            tempCardStorageLocation.SetImageURL(newImageURL);
+                            tempCardStorageLocation.SetNote(newNote);
+                            break;
+                        case 1:
+                            tempCardStorageLocation = intermediateList.ElementAt(oldPosition);
+                            tempCardStorageLocation.SetName(newName);
+                            tempCardStorageLocation.SetImageURL(newImageURL);
+                            tempCardStorageLocation.SetNote(newNote);
+                            break;
+                        case 2:
+                            tempCardStorageLocation = bottomList.ElementAt(oldPosition);
+                            tempCardStorageLocation.SetName(newName);
+                            tempCardStorageLocation.SetImageURL(newImageURL);
+                            tempCardStorageLocation.SetNote(newNote);
+                            break;
+                        default:
+                            //lolwut
+                            break;
+                    }
                 }
             }
         }
@@ -280,10 +403,14 @@ namespace WindowsFormsApp1
         static string filename = "cardlist.csv";
 
         static String CSVFile;
+
         public static void writeFile(List<String> cardList)
         {
 
-            //Using a CSV file, we will write to delimit values by comma, and objects by newline.
+            //  Using a CSV file, we will write to delimit values by comma, and objects by newline.
+            //  Every string in the file will be wrapped with quotation marks, except the first and last. This should allow MOST commas to no longer affect the file.
+            //  Long term, we need to correct this. Basically prepend every input comma with \.
+            //  Our separator is now "," - not the comma character. However, Quote-Comma-Quote Separated Values is less catchy. QCQSV?
             foreach(String s in cardList){
                 CSVFile += s + "\n";
             }
@@ -297,7 +424,7 @@ namespace WindowsFormsApp1
 
     //Cards will always follow the following format from the file:
     //[commissionerName] [pieceName] [imgRootDir] [note] [price] [priority] [initialPriority] 
-    //  [queuePosition] [completionCounter] [maxCompletionCounter] \t\n
+    //  [queuePosition] [completionCounter] [maxCompletionCounter] \n
     public class CardFactory
     {
 
@@ -324,9 +451,10 @@ namespace WindowsFormsApp1
                     fs.Read(b, 0, b.Length);
                     CSVFull = encoder.GetString(b);
                     CSVParsed.AddRange(CSVFull.Split('\n'));
+                    string[] separator = { "\",\"" };
 
                     foreach(String s in CSVParsed){
-                        String[] cardStrings = s.Split(',');
+                        String[] cardStrings = s.Split(separator, StringSplitOptions.None);
                         piece = cardStrings[0];
                         commissioner = cardStrings[1];
                         imgURL = cardStrings[2];

@@ -73,8 +73,24 @@ namespace WindowsFormsApp1
             return this.cardList.ElementAt(index);
         }
 
+        //  Insert a card, then increment every card behind it's location.
         public void Insert(CardFlowLayoutPanel inputCard, int index) {
+            this.cardList.Insert(index, inputCard);
+            for (int i = index + 1; i < this.cardList.Count; ++i)
+            {
+                this.cardList.ElementAt(i).IncreasePosition();
+            }
+        }
 
+        //  Move a card that already exists, then increment every card behind it's location.
+        public void MoveCard(int oldIndex, int newIndex) {
+            CardFlowLayoutPanel tempCard = cardList.ElementAt(oldIndex);
+            cardList.RemoveAt(oldIndex);
+            cardList.Insert(newIndex, tempCard);
+            for (int i = newIndex + 1; i < cardList.Count; ++i)
+            {
+                this.cardList.ElementAt(i).IncreasePosition();
+            }
         }
 
         //Usage for Form-Based deletion method.
