@@ -22,7 +22,8 @@ namespace WindowsFormsApp1
                 this.Visible = false;
             }
             this.cardList = new List<CardFlowLayoutPanel>();
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.LightGray;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.AutoScroll = true;
         }
 

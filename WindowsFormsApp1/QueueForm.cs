@@ -28,7 +28,6 @@ namespace WindowsFormsApp1
             cardFactory = new CardFactory();
             completedCards = new List<CardFlowLayoutPanel>();
             InitializeComponent();
-            listContainers.BackColor = Color.Black;
             this.TopMost = Properties.Settings.Default.alwaysOnTop;
         }
 

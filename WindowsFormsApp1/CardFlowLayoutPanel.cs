@@ -32,12 +32,15 @@ namespace WindowsFormsApp1
             this.queuePosition = position;
             this.priorityLevel = priority;
             this.note = note;
+            this.BackColor = System.Drawing.Color.White;
 
             this.cardImage = new PictureBox
             {
                 ImageLocation = imageURL,
                 SizeMode = PictureBoxSizeMode.StretchImage
             };
+
+            this.cardImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 
             this.piece = new Label() {
                 Text = title,
@@ -54,7 +57,7 @@ namespace WindowsFormsApp1
             this.cardImage.Size = new System.Drawing.Size(160, 160);
             this.piece.Size = new System.Drawing.Size(140, 40);
             this.commissioner.Size = new System.Drawing.Size(140, 40);
-            this.cardImage.Location = new System.Drawing.Point(0,0);
+            this.cardImage.Location = new System.Drawing.Point(5,5);
             this.piece.Location = new System.Drawing.Point(170, 40);
             this.commissioner.Location = new System.Drawing.Point(170, 80);
 
@@ -99,7 +102,7 @@ namespace WindowsFormsApp1
         //I AM A WONDERFUL DEVELOPER.
         public CardFlowLayoutPanel(string title, string commissioner, string imgURL, string note, int priority, int position)
         {
-            this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 
             this.commissionsFinishedCounter = 0;
             this.priorityLevel = priority;
@@ -152,9 +155,12 @@ namespace WindowsFormsApp1
             this.cardImage.Size = new System.Drawing.Size(160, 160);
             this.piece.Size = new System.Drawing.Size(140, 40);
             this.commissioner.Size = new System.Drawing.Size(140, 40);
-            this.cardImage.Location = new System.Drawing.Point(0, 0);
+            this.cardImage.Location = new System.Drawing.Point(5, 5);
             this.piece.Location = new System.Drawing.Point(170, 40);
             this.commissioner.Location = new System.Drawing.Point(170, 80);
+            this.BackColor = System.Drawing.Color.White;
+            this.BorderStyle = BorderStyle.FixedSingle;
+
         }
 
         //This is for testing, and does not represent ANY FORM OF TRUE CARD.
