@@ -26,6 +26,8 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
 
+            this.AllowDrop = true;
+
             this.Text = "Create New Commission";
             this.deleteBtn.Text = "Clear";
             this.updateBtn.Text = "Cancel";
@@ -38,6 +40,7 @@ namespace WindowsFormsApp1
             this.pieceNameTxtBox.Text = "Enter the piece name here.";
             this.commissionerNameTxtBox.Text = "Enter the name of the commissioner here.";
             this.imageLocationTxtBox.Text = "Enter the location of the image, or leave blank for white image.";
+
 
             this.noteTxtBox.Enter += new System.EventHandler(this.textBox_Enter);
             this.pieceNameTxtBox.Enter += new System.EventHandler(this.textBox_Enter);
@@ -66,8 +69,12 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
 
+            this.AllowDrop = true;
+
             cardToEditIfExistent = cardToEdit;
 
+            this.imagePreviewPicBox.DragEnter += new System.Windows.Forms.DragEventHandler(this.pictureBox1_DragEnter);
+            this.imagePreviewPicBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox1_DragDrop);
             this.commissionerNameTxtBox.ReadOnly = true;
             this.pieceNameTxtBox.Text = cardToEditIfExistent.ElementAt(0);
             this.commissionerNameTxtBox.Text = cardToEditIfExistent.ElementAt(1);
@@ -121,6 +128,8 @@ namespace WindowsFormsApp1
         }
 
         private void pictureBox1_DragEnter(object sender, DragEventArgs e) {
+            Console.WriteLine("Whoo! We dragged something.");
+
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 e.Effect = DragDropEffects.Copy;
@@ -131,7 +140,9 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void pictureBox1_DragDrop(object sender, DragEventArgs e) {
+        private void pictureBox1_DragDrop(object sender, DragEventArgs e)
+        {
+            Console.WriteLine("Whoo! We dropped something.");
 
             bool imageFound = false;
 
@@ -299,7 +310,8 @@ namespace WindowsFormsApp1
             {
                 List<string> newCard = new List<string>();
                 newCard.Add(this.pieceNameTxtBox.Text);
-                newCard.Add(this.imageLocationTxtBox.Text);
+                newCard.Add(this.commissionerNameTxtBox.Text);
+                newCard.Add(this.imageLocationTxtBox.ForeColor == Color.Gray ? "": this.imageLocationTxtBox.Text);
                 newCard.Add(this.noteTxtBox.Text);
                 newCard.Add(this.positionNumInput.Value.ToString());
                 newCard.Add(this.priorityDropDown.SelectedIndex.ToString());
@@ -360,10 +372,14 @@ namespace WindowsFormsApp1
             
         }
 
-        //Will delete the card from the layout panel and not increment all other cards
+        //  Will delete the card from the layout panel and not increment all other cards
+        //  Did you know you have to close the window after doing this?
+        //  No? Who'd've thunk it!
         private void delete_Click(object sender, EventArgs e)
         {
             QueueForm.deleteCommission(Int32.Parse(cardToEditIfExistent.ElementAt(4)), Int32.Parse(cardToEditIfExistent.ElementAt(3)));
+            this.Close();
+            this.Dispose();
         }
 
         private void clear_Click(object sender, EventArgs e) {

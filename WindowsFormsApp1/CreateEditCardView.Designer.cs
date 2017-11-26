@@ -78,6 +78,7 @@ namespace WindowsFormsApp1
             // 
             // imagePreviewPicBox
             // 
+            this.imagePreviewPicBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.imagePreviewPicBox.Location = new System.Drawing.Point(15, 25);
             this.imagePreviewPicBox.Name = "imagePreviewPicBox";
             this.imagePreviewPicBox.Size = new System.Drawing.Size(160, 160);
@@ -117,13 +118,12 @@ namespace WindowsFormsApp1
             this.priorityDropDown.FormattingEnabled = true;
             this.priorityDropDown.Items.AddRange(new object[] {
             "High",
-            "Low",
-            "Middle"});
+            "Middle",
+            "Low"});
             this.priorityDropDown.Location = new System.Drawing.Point(507, 196);
             this.priorityDropDown.MaxDropDownItems = 3;
             this.priorityDropDown.Name = "priorityDropDown";
             this.priorityDropDown.Size = new System.Drawing.Size(72, 21);
-            this.priorityDropDown.Sorted = true;
             this.priorityDropDown.TabIndex = 5;
             this.priorityDropDown.SelectedIndexChanged += new System.EventHandler(this.priority_SelectedIndexChanged);
             // 

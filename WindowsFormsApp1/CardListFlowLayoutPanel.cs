@@ -56,17 +56,33 @@ namespace WindowsFormsApp1
         //  We also ensure that priority is set correctly. A code review will determine the necessity of this.
         public void AddRange(List<CardFlowLayoutPanel> inputCardList){
             this.cardList.AddRange(inputCardList);
+            this.Controls.AddRange(inputCardList.ToArray());
 
             for (int i = 0; i < cardList.Count; ++i)
             {
-                cardList.ElementAt(i).SetPosition(i);
-                cardList.ElementAt(i).SetPriority(priority);
+                this.cardList.ElementAt(i).SetPosition(i);
+                this.cardList.ElementAt(i).SetPriority(priority);
+                this.cardList.ElementAt(i).Location = new System.Drawing.Point(20, 20 + (i * 160));
+            }
+
+            if (cardList.Count > 4)
+            {
+                this.VScroll = true;
             }
         }
 
         public void Add(CardFlowLayoutPanel inputCard) {
             this.cardList.Add(inputCard);
-            inputCard.SetPosition(this.cardList.Count);
+            this.Controls.Add(inputCard);
+            inputCard.SetPosition(this.cardList.Count - 1);
+            inputCard.Location = new System.Drawing.Point(20, 20 + (inputCard.GetPosition() * 160));
+            inputCard.BackColor = System.Drawing.Color.Black;
+            inputCard.Visible = true;
+
+            if (cardList.Count > 4)
+            {
+                this.VScroll = true;
+            }
         }
 
         public CardFlowLayoutPanel ElementAt(int index) {
@@ -75,10 +91,31 @@ namespace WindowsFormsApp1
 
         //  Insert a card, then increment every card behind it's location.
         public void Insert(CardFlowLayoutPanel inputCard, int index) {
-            this.cardList.Insert(index, inputCard);
-            for (int i = index + 1; i < this.cardList.Count; ++i)
+            if (index < cardList.Count)
             {
-                this.cardList.ElementAt(i).IncreasePosition();
+                Console.WriteLine("Index was within cardListCount.");
+                this.cardList.Insert(index, inputCard);
+                this.Controls.Add(inputCard);
+                int i = 0;
+                foreach (CardFlowLayoutPanel card in cardList)
+                {
+                    card.Location = new System.Drawing.Point(20, 20 + (i * 160));
+                    i += 1;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Index was outside of cardListCount.");
+                cardList.Add(inputCard);
+                this.Controls.Add(inputCard);
+                inputCard.SetPosition(cardList.Count - 1);
+                inputCard.Location = new System.Drawing.Point(20, 20 + (inputCard.GetPosition() * 160));
+                inputCard.Visible = true;
+            }
+
+            if (cardList.Count > 4)
+            {
+                this.VScroll = true;
             }
         }
 
@@ -92,14 +129,29 @@ namespace WindowsFormsApp1
             for (int i = 0; i < cardList.Count; ++i)
             {
                 this.cardList.ElementAt(i).SetPosition(i);
+                this.cardList.ElementAt(i).Location = new System.Drawing.Point(20, 20 + (i * 160));
             }
         }
 
-        //Usage for Form-Based deletion method.
+        //  Usage for Form-Based deletion method.
+        //  Remove from Controls list as well.
         public void DeleteCardAtPosition(int position) {
-            this.cardList.RemoveAt(position);
-            for (int i = position; i < this.cardList.Count; ++i) {
-                cardList.ElementAt(i).ReducePosition();
+            try
+            {
+                this.Controls.Remove(this.cardList.ElementAt(position));
+                this.cardList.RemoveAt(position);
+                for (int i = position; i < this.cardList.Count; ++i)
+                {
+                    cardList.ElementAt(i).ReducePosition();
+                    this.cardList.ElementAt(i).Location = new System.Drawing.Point(20, 20 + (i * 160));
+                }
+
+                if (cardList.Count < 5)
+                {
+                    this.VScroll = false;
+                }
+            } catch (Exception ex) {
+                Console.WriteLine("Apparently we had an issue. " + position + " was probably out of bounds.\n" + ex.Message);
             }
         }
     }

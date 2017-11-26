@@ -99,6 +99,8 @@ namespace WindowsFormsApp1
         //I AM A WONDERFUL DEVELOPER.
         public CardFlowLayoutPanel(string title, string commissioner, string imgURL, string note, int priority, int position)
         {
+            this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+
             this.commissionsFinishedCounter = 0;
             this.priorityLevel = priority;
             if (priority == 0)
@@ -125,11 +127,34 @@ namespace WindowsFormsApp1
                 TextAlign = System.Drawing.ContentAlignment.MiddleCenter
             };
 
+            this.piece.Font = new System.Drawing.Font(this.piece.Font, System.Drawing.FontStyle.Bold);
+
             this.commissioner = new Label()
             {
                 Text = commissioner,
                 TextAlign = System.Drawing.ContentAlignment.MiddleCenter
             };
+
+
+            this.commissioner.Font = new System.Drawing.Font(this.commissioner.Font, System.Drawing.FontStyle.Bold);
+
+            this.Controls.Add(this.commissioner);
+            this.Controls.Add(this.piece);
+            this.Controls.Add(this.cardImage);
+
+            this.Click += new System.EventHandler(this.CardPanel_Clicked);
+            this.commissioner.Click += new System.EventHandler(this.CardPanel_Clicked);
+            this.piece.Click += new System.EventHandler(this.CardPanel_Clicked);
+            this.cardImage.Click += new System.EventHandler(this.CardPanel_Clicked);
+
+            this.Size = new System.Drawing.Size(320, 170);
+
+            this.cardImage.Size = new System.Drawing.Size(160, 160);
+            this.piece.Size = new System.Drawing.Size(140, 40);
+            this.commissioner.Size = new System.Drawing.Size(140, 40);
+            this.cardImage.Location = new System.Drawing.Point(0, 0);
+            this.piece.Location = new System.Drawing.Point(170, 40);
+            this.commissioner.Location = new System.Drawing.Point(170, 80);
         }
 
         //This is for testing, and does not represent ANY FORM OF TRUE CARD.
@@ -319,6 +344,11 @@ namespace WindowsFormsApp1
                 return true;
             }
             return false;
+        }
+
+        public void CardPanel_Clicked(object sender, EventArgs e) {
+            CreateEditCardView updateView = new CreateEditCardView(this.ConvertToList());
+            updateView.Show();
         }
     }
 }

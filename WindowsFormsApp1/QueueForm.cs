@@ -85,7 +85,35 @@ namespace WindowsFormsApp1
         }
 
         public static void addCommissionFromList(List<string> inputList) {
+            string cardPieceName = inputList.ElementAt(0);
+            string cardCommissionerName = inputList.ElementAt(1);
+            string cardImageURL = inputList.ElementAt(2) == "" ? "defaultImage.jpg": inputList.ElementAt(2);
+            string cardNote = inputList.ElementAt(3);
+            int cardPosition = Int32.Parse(inputList.ElementAt(4));
+            int cardPriority = Int32.Parse(inputList.ElementAt(5));
 
+            CardFlowLayoutPanel cardToInsert = cardFactory.getCardPanelFromInput(cardPieceName, cardCommissionerName, cardImageURL, cardNote, cardPriority, cardPosition);
+
+            foreach (string s in cardToInsert.ConvertToList())
+            {
+                Console.WriteLine(s);
+            }
+
+            switch (cardPriority)
+            {
+                case 0:
+                    topList.Insert(cardToInsert, cardPosition);
+                    break;
+                case 1:
+                    intermediateList.Insert(cardToInsert, cardPosition);
+                    break;
+                case 2:
+                    bottomList.Insert(cardToInsert, cardPosition);
+                    break;
+                default:
+                    Console.WriteLine("Default reached. Priority is " + cardPriority);
+                    break;
+            }
         }
 
         //The payload we're having delivered to us will contain information in order:
