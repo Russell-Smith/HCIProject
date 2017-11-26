@@ -23,6 +23,7 @@ namespace WindowsFormsApp1
             }
             this.cardList = new List<CardFlowLayoutPanel>();
             this.BackColor = System.Drawing.Color.White;
+            this.AutoScroll = true;
         }
 
         public void OnParentResize(int newXSize, int newYSize){
@@ -64,11 +65,6 @@ namespace WindowsFormsApp1
                 this.cardList.ElementAt(i).SetPriority(priority);
                 this.cardList.ElementAt(i).Location = new System.Drawing.Point(20, 20 + (i * 160));
             }
-
-            if (cardList.Count > 4)
-            {
-                this.VScroll = true;
-            }
         }
 
         public void Add(CardFlowLayoutPanel inputCard) {
@@ -78,11 +74,7 @@ namespace WindowsFormsApp1
             inputCard.Location = new System.Drawing.Point(20, 20 + (inputCard.GetPosition() * 160));
             inputCard.BackColor = System.Drawing.Color.Black;
             inputCard.Visible = true;
-
-            if (cardList.Count > 4)
-            {
-                this.VScroll = true;
-            }
+            
         }
 
         public CardFlowLayoutPanel ElementAt(int index) {
@@ -112,18 +104,21 @@ namespace WindowsFormsApp1
                 inputCard.Location = new System.Drawing.Point(20, 20 + (inputCard.GetPosition() * 160));
                 inputCard.Visible = true;
             }
-
-            if (cardList.Count > 4)
-            {
-                this.VScroll = true;
-            }
         }
 
         //  Move a card that already exists, then increment every card behind it's location.
         public void MoveCard(int oldIndex, int newIndex) {
             CardFlowLayoutPanel tempCard = cardList.ElementAt(oldIndex);
-            cardList.RemoveAt(oldIndex);
-            cardList.Insert(newIndex, tempCard);
+            if (newIndex > cardList.Count)
+            {
+                cardList.RemoveAt(oldIndex);
+                cardList.Add(tempCard);
+            }
+            else
+            {
+                cardList.RemoveAt(oldIndex);
+                cardList.Insert(newIndex, tempCard);
+            }
             //  This currently increases positions of all cards behind a card. Let's just index them all to the list.
             //  It's slow. It's literally n. Fuck it.
             for (int i = 0; i < cardList.Count; ++i)
@@ -145,11 +140,7 @@ namespace WindowsFormsApp1
                     cardList.ElementAt(i).ReducePosition();
                     this.cardList.ElementAt(i).Location = new System.Drawing.Point(20, 20 + (i * 160));
                 }
-
-                if (cardList.Count < 5)
-                {
-                    this.VScroll = false;
-                }
+                
             } catch (Exception ex) {
                 Console.WriteLine("Apparently we had an issue. " + position + " was probably out of bounds.\n" + ex.Message);
             }

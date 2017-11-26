@@ -348,7 +348,7 @@ namespace WindowsFormsApp1
 
         public void CardPanel_Clicked(object sender, EventArgs e) {
             CreateEditCardView updateView = new CreateEditCardView(this.ConvertToList());
-            updateView.Show();
+            updateView.Show(this);
         }
     }
 }

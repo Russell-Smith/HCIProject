@@ -40,6 +40,7 @@ namespace WindowsFormsApp1
             this.pieceNameTxtBox.Text = "Enter the piece name here.";
             this.commissionerNameTxtBox.Text = "Enter the name of the commissioner here.";
             this.imageLocationTxtBox.Text = "Enter the location of the image, or leave blank for white image.";
+            this.priorityDropDown.SelectedIndex = 2;
 
 
             this.noteTxtBox.Enter += new System.EventHandler(this.textBox_Enter);
@@ -355,6 +356,7 @@ namespace WindowsFormsApp1
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 imageLocationTxtBox.Text = openFileDialog1.FileName;
+                imageLocationTxtBox.ForeColor = Color.Black;
             }
         }
 
