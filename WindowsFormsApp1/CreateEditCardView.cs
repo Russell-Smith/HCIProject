@@ -56,6 +56,8 @@ namespace WindowsFormsApp1
             this.deleteBtn.Click -= this.delete_Click;
             this.updateBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             this.deleteBtn.Click += new System.EventHandler(this.clear_Click);
+            this.finishBtn.Click -= this.finish_Click;
+            this.finishBtn.Click += new System.EventHandler(this.createBtn_Click);
 
         }
 
@@ -279,13 +281,14 @@ namespace WindowsFormsApp1
         private void createBtn_Click(object sender, EventArgs e)
         {
             string unfilledInputs = "";
+            Console.WriteLine("We're in the CreateBtn_Click method.");
 
-            if (this.pieceNameTxtBox.Text == "")
+            if (this.pieceNameTxtBox.Text.Length == 0 || this.pieceNameTxtBox.ForeColor == Color.Gray)
             {
                 this.pieceNameTxtBox.BackColor = Color.LightPink;
                 unfilledInputs += "\nPiece Name";
             }
-            if (this.commissionerNameTxtBox.Text == "")
+            if (this.commissionerNameTxtBox.Text.Length ==  0 || this.pieceNameTxtBox.ForeColor == Color.Gray)
             {
                 this.commissionerNameTxtBox.BackColor = Color.LightPink;
                 unfilledInputs += "\nCommissioner Name";

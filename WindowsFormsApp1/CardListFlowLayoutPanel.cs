@@ -10,7 +10,7 @@ namespace WindowsFormsApp1
     public class CardListFlowLayoutPanel : Panel
     {
         private List<CardFlowLayoutPanel> cardList;
-        private int windowXSize, windowYSize, priority;
+        private int priority;
 
 
         public CardListFlowLayoutPanel(int priority)
