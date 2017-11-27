@@ -61,7 +61,8 @@ namespace WindowsFormsApp1
         }
 
         //Delete a commission, no incrementing.
-        public static void deleteCommission(int queue, int position) {
+        public static void deleteCommission(int queue, int position)
+        {
             switch (queue)
             {
                 case 0:
@@ -84,10 +85,11 @@ namespace WindowsFormsApp1
         //    bottomList.Add(cardFactory.getCardPanelFromInput(pieceName, commissionerName, 2, note));
         //}
 
-        public static void addCommissionFromList(List<string> inputList) {
+        public static void addCommissionFromList(List<string> inputList)
+        {
             string cardPieceName = inputList.ElementAt(0);
             string cardCommissionerName = inputList.ElementAt(1);
-            string cardImageURL = inputList.ElementAt(2) == "" ? "defaultImage.jpg": inputList.ElementAt(2);
+            string cardImageURL = inputList.ElementAt(2) == "" ? "defaultImage.jpg" : inputList.ElementAt(2);
             string cardNote = inputList.ElementAt(3);
             int cardPosition = Int32.Parse(inputList.ElementAt(4));
             int cardPriority = Int32.Parse(inputList.ElementAt(5));
@@ -126,7 +128,8 @@ namespace WindowsFormsApp1
         //  Priority Level - Int32 as a String - Requires Cast - 4th Element
         //  Position - Int32 as a String - Requires Cast - Acts as card's index in list. Use as argument
         //  two in the call to the CardListFlowLayoutPanel - 5th Element <- Bruce Willis is not a proper value.
-        public static void insertCommission(List<String> cardPayload) {
+        public static void insertCommission(List<String> cardPayload)
+        {
             switch (cardPayload.ElementAt(4))
             {
                 case "0":
@@ -167,7 +170,8 @@ namespace WindowsFormsApp1
 
         //  Used to update a particular commission.
         //  Called by the CreateEditCardView
-        public static void updateCommission(List<String> updatedCard, List<String> originalCard) {
+        public static void updateCommission(List<String> updatedCard, List<String> originalCard)
+        {
 
             CardFlowLayoutPanel tempCardStorageLocation;
             int oldPriority, newPriority, oldPosition, newPosition;
@@ -287,7 +291,8 @@ namespace WindowsFormsApp1
                 {
                     //  The Card's position has changed, though.
                     //  These are all Moves, which requires acquiring the original, removing it at the old index, and then inserting it at the new index.
-                    switch (newPriority){
+                    switch (newPriority)
+                    {
                         case 0:
                             tempCardStorageLocation = topList.ElementAt(oldPosition);
                             tempCardStorageLocation.SetName(newName);
@@ -350,22 +355,6 @@ namespace WindowsFormsApp1
             SaveQueues();
         }
 
-        /*
-        public static CardListFlowLayoutPanel getQueue(int priority)
-        {
-            if (priority == 1)
-            {
-                return queue1;
-            } else if (priority == 2)
-            {
-                return queue2;
-            } else if (priority == 3)
-            {
-                return queue3;
-            }
-            return null;
-        }*/
-
         private void QueueForm_Load(object sender, EventArgs e)
         {
             List<CardFlowLayoutPanel>[] populatedList = CardFactory.PopulateFromDisk();
@@ -378,7 +367,8 @@ namespace WindowsFormsApp1
             this.listContainers.Controls.Add(bottomList);
         }
 
-        private static void SaveQueues() {
+        private static void SaveQueues()
+        {
             List<String> fullQueueCardListSet = new List<String>();
 
             fullQueueCardListSet.AddRange(topList.WriteQueueToList().ToArray());
@@ -403,7 +393,8 @@ namespace WindowsFormsApp1
 
         }
 
-        override protected void OnResize(EventArgs e) {
+        override protected void OnResize(EventArgs e)
+        {
             base.OnResize(e);
 
         }
@@ -441,16 +432,6 @@ namespace WindowsFormsApp1
             settings.Show(this);
         }
 
-        /*
-        //Temporary function that will handle the information from the create commission form
-        private void createClicked()
-        {
-            Card card = new Card();
-            card = card.createCard();
-
-        }
-        */
-
     }
 
     //used to create a file that stores all of the information held by the cards
@@ -473,13 +454,16 @@ namespace WindowsFormsApp1
             //  Every string in the file will be wrapped with quotation marks, except the first and last. This should allow MOST commas to no longer affect the file.
             //  Long term, we need to correct this. Basically prepend every input comma with \.
             //  Our separator is now "," - not the comma character. However, Quote-Comma-Quote Separated Values is less catchy. QCQSV?
-            foreach(String s in cardList){
+            foreach (String s in cardList)
+            {
                 CSVFile += s + "\n";
             }
 
-            using(System.IO.FileStream fs = System.IO.File.Create(filename)){
+            using (System.IO.FileStream fs = System.IO.File.Create(filename))
+            {
                 fs.Write(Encoding.UTF8.GetBytes(CSVFile), 0, Encoding.UTF8.GetByteCount(CSVFile));
                 fs.Flush();
+                CSVFile = "";
             }
         }
     }
@@ -492,18 +476,21 @@ namespace WindowsFormsApp1
 
         static string filename = "cardlist.csv";
 
-        public static List<CardFlowLayoutPanel>[] PopulateFromDisk(){
+        public static List<CardFlowLayoutPanel>[] PopulateFromDisk()
+        {
 
             List<CardFlowLayoutPanel>[] cardListArray = new List<CardFlowLayoutPanel>[3];
             cardListArray[0] = new List<CardFlowLayoutPanel>();
             cardListArray[1] = new List<CardFlowLayoutPanel>();
             cardListArray[2] = new List<CardFlowLayoutPanel>();
 
-            if (System.IO.File.Exists(filename)){
+            if (System.IO.File.Exists(filename))
+            {
 
                 String piece, commissioner, imgURL, commissionsFinished, maxCommissions, queuePosition, priorityLevel, note;
 
-                using(System.IO.FileStream fs = System.IO.File.OpenRead(filename)){
+                using (System.IO.FileStream fs = System.IO.File.OpenRead(filename))
+                {
                     Console.WriteLine("{0} - Length of found file.", fs.Length);
                     byte[] b = new byte[fs.Length];
 
@@ -521,12 +508,13 @@ namespace WindowsFormsApp1
                     string[] separator = { "\",\"" };
                     Console.WriteLine("Separator is " + separator[0]);
 
-                    foreach(String s in CSVParsed){
+                    foreach (String s in CSVParsed)
+                    {
                         String[] cardStrings = s.Split(separator, StringSplitOptions.RemoveEmptyEntries);
 
                         if (cardStrings.Length > 1)
                         {
-                            Console.WriteLine("String parsed. {0} - Length of array.",cardStrings.Length);
+                            Console.WriteLine("String parsed. {0} - Length of array.", cardStrings.Length);
 
                             piece = cardStrings[0];
                             commissioner = cardStrings[1];
@@ -569,270 +557,28 @@ namespace WindowsFormsApp1
                     }
                 }
 
-            } else {
+            }
+            else
+            {
                 Console.WriteLine("No file present in root directory. User has no cards saved.");
-                }
+            }
             return cardListArray;
         }
 
-        public CardFlowLayoutPanel getCardPanelFromInput(string title, string commissioner, string imageURL, int commissionsFinished, int maxCommissions, int position, int priority, string note){
+        public CardFlowLayoutPanel getCardPanelFromInput(string title, string commissioner, string imageURL, int commissionsFinished, int maxCommissions, int position, int priority, string note)
+        {
             return new CardFlowLayoutPanel(title, commissioner, imageURL, commissionsFinished, maxCommissions, position, priority, note);
         }
 
         public CardFlowLayoutPanel getCardPanelFromInput(string title, string commissioner, int priority, string note)
-            {
+        {
             return new CardFlowLayoutPanel(title, commissioner, priority, note);
-            }
+        }
 
-        public CardFlowLayoutPanel getCardPanelFromInput(string title, string commissioner, string imageURL, string note, int priority, int position) {
+        public CardFlowLayoutPanel getCardPanelFromInput(string title, string commissioner, string imageURL, string note, int priority, int position)
+        {
             return new CardFlowLayoutPanel(title, commissioner, imageURL, note, priority, position);
         }
     }
 
-
-    /*
-
-    //the class that manages the cards within the queues, and each queue.
-    //constructs them in UI as well
-    public class CardList
-    {
-        //add, bindarySearch, removeAt, contains, insert; are possibly needed methods
-
-        //when a card is removed, remove the bottom UI card and shift all info up.
-        private List<CardFlowLayoutPanel> queue = new List<CardFlowLayoutPanel>(); //high queue priority
-
-        public int getSize()
-        {
-            return queue.Count;
-        }
-
-        public void addCard(Card card)
-        {
-            queue.Add(card);
-        }
-
-        public void cardIncrement()
-        {
-            for(int i = 0; i < queue.Count; i++)
-            {
-                queue.ElementAt(i).increment();
-            }
-        }
-
-        public void cardMoved(Card movedCard)
-        {
-
-        }
-
-        public void removeCard(int position)
-        {
-            queue.RemoveAt(position);
-        }
-
-        public void insertCard(int position, Card card)
-        {
-            queue.Insert(position, card);
-        }
-
-        public Card getCard(int position)
-        {
-            return queue[position];
-        }
-    }*/
-
-    /*
-    //the class that creates and maintains the cards information.
-    public class Card
-    {
-        //can change to have whatever we need to store. same as object and form for Card.
-        private string commissionerName, pieceName, imgRootDir, note;
-        private decimal price;
-        private int priority, initialPriority, queuePosition, completionCounter, maxCompletionCounter;
-
-        //image reference here for card
-
-        //method that creates an object of class Card, with inputs from the Card Creation Form.
-        //can change taken values as necessary to what we're storing.
-        public Card createCard(String commissionerName, String pieceName, String imgRootDir, String note, decimal price, int priority) 
-        {
-            this.commissionerName = commissionerName;
-            this.pieceName = pieceName;
-            this.imgRootDir = imgRootDir;
-            this.note = note;
-
-            this.price = price;
-
-            this.priority = this.initialPriority = priority;
-
-            //get the current length of the queue to determine position
-            CardList dummy = mainForm.getQueue(priority);
-            this.queuePosition = dummy.getSize();
-            
-            this.completionCounter = 0;
-            if (priority == 1)
-            {
-                this.maxCompletionCounter = int.MaxValue;
-            } else if (priority == 2)
-            {
-                this.maxCompletionCounter = 5;
-            } else
-            {
-                this.maxCompletionCounter = 8;
-            }
-
-            return this;
-        }
-
-        //This will be done on startup to load all current card information into the application
-        public Card recreateCard(String commissionerName, String pieceName, String imgRootDir, String note,
-                    decimal price, int priority, int initialPriority, int queuePosition, int completionCounter, 
-                    int maxCompletionCounter)
-        {
-            this.commissionerName = commissionerName;
-            this.pieceName = pieceName;
-            this.imgRootDir = imgRootDir;
-            this.note = note;
-
-            this.price = price;
-
-            this.priority =  priority;
-            this.initialPriority = initialPriority;
-            this.queuePosition = queuePosition;
-            this.completionCounter = completionCounter;
-            this.maxCompletionCounter = maxCompletionCounter;
-
-
-            return this;
-        }
-
-        //pulls information from Card Update Form and sets the card objects values to those.
-            //only the pieceName, imgRootDir, and note can be changed through this feature
-        public Card updateCard(String pieceName, String imgRootDir, String note)
-        {
-            this.pieceName = pieceName;
-            this.imgRootDir = imgRootDir;
-            this.note = note;
-            return this;
-        }
-
-        public int getPosition()
-        {
-            return this.queuePosition;
-        }
-
-        //Method to handle if the user manually changes the position of a commission
-            //Needs to update the queue
-            //Make sure that the new Postion being fed is the entered position - 1
-        public void changePriorityAndPosition(int newPriority, int newPosition)
-        {
-            //all commissions' positions after the moved commission's new position will have to increment by one
-            //match the counter of the piece before it so that it stays in the correct position
-            if (this.priority == 1)
-            {
-                mainForm.queue1.removeCard(this.queuePosition);
-            }
-            else if (this.priority == 2)
-            {
-                mainForm.queue2.removeCard(this.queuePosition);
-            }
-            else
-            {
-                mainForm.queue3.removeCard(this.queuePosition);
-            }
-            if (newPriority == 1)
-            {
-                mainForm.queue1.insertCard(newPosition, this);
-                this.completionCounter = mainForm.queue1.getCard(newPosition - 1).getPosition();
-            }
-            else if (newPriority == 2)
-            {
-                mainForm.queue2.insertCard(newPosition, this);
-                this.completionCounter = mainForm.queue2.getCard(newPosition - 1).getPosition();
-            }
-            else
-            {
-                mainForm.queue3.insertCard(newPosition, this);
-                this.completionCounter = mainForm.queue3.getCard(newPosition - 1).getPosition();
-            }
-
-            this.queuePosition = newPosition;
-            this.priority = newPriority;
-
-            if (newPriority == this.priority)
-            {
-                //reset maxCompletionCounter to match the new queue. Artist would like to wait that long to see 
-                //  the piece again
-                if (newPriority == 1)
-                {
-                    this.maxCompletionCounter = int.MaxValue;
-                }
-                else if (newPriority == 2)
-                {
-                    this.maxCompletionCounter = 5;
-                }
-                else
-                {
-                    this.maxCompletionCounter = 8;
-                }
-            }
-        }
-        
-
-        //incrment the counter of every commission when one is completed. if the move bool becomes true,
-        //the card will need to be moved to the first queue. 
-        public void increment()
-        {
-            this.completionCounter++;
-            if (this.completionCounter == this.maxCompletionCounter)
-            {
-                this.priority = 1;
-                this.completionCounter = 0;
-                this.maxCompletionCounter = int.MaxValue;
-               
-            }
-        }
-
-        //marks the card as completed, deletes the information from the file
-        //A possible way to make this possible is to set all of the string values to empty and 
-        //num values to -1
-        public void completeCard()
-        {
-            if (this.priority == 1 && this.queuePosition == 0) {
-                mainForm.queue1.removeCard(0);
-                mainForm.finishCommission();
-            }
-        }
-
-        //removes a card from the appropraite queue
-        public void deleteCard()
-        {
-            if(this.priority == 1)
-            {
-                mainForm.queue1.removeCard(this.queuePosition);
-            } else if (this.priority == 2)
-            {
-                mainForm.queue2.removeCard(this.queuePosition);
-            } else
-            {
-                mainForm.queue3.removeCard(this.queuePosition);
-            }
-        }
-
-        //Converts the information into a string to be inserted into the CardFileFactory
-        public void ToCSON()
-        {
-            String CSON = this.commissionerName +
-                this.pieceName +
-                this.imgRootDir +
-                this.note +
-                this.price.ToString() +
-                this.priority.ToString() +
-                this.initialPriority.ToString() +
-                this.queuePosition.ToString() +
-                this.completionCounter.ToString() +
-                this.maxCompletionCounter.ToString();
-
-            CardFileFactory.append(CSON);
-        }
-    }*/
 }

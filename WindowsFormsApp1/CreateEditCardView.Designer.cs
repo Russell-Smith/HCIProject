@@ -78,6 +78,7 @@ namespace WindowsFormsApp1
             // 
             // imagePreviewPicBox
             // 
+            this.imagePreviewPicBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.imagePreviewPicBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.imagePreviewPicBox.Location = new System.Drawing.Point(15, 25);
             this.imagePreviewPicBox.Name = "imagePreviewPicBox";

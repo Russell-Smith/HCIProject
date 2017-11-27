@@ -23,6 +23,9 @@ namespace WindowsFormsApp1 {
             Properties.Settings.Default.showConfirmationOnFinish = true;
             this.Owner.TopMost = Properties.Settings.Default.alwaysOnTop;
             Properties.Settings.Default.Save();
+            alwaysOnTopChkBox.Checked = Properties.Settings.Default.alwaysOnTop;
+            darkModeChkBox.Checked = Properties.Settings.Default.darkMode;
+            confirmDialogChkBox.Checked = Properties.Settings.Default.showConfirmationOnFinish;
         }
 
         private void finishBtn_Click(object sender, EventArgs e) {

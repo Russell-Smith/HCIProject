@@ -54,8 +54,6 @@ namespace WindowsFormsApp1
             this.commissionerNameTxtBox.Leave += new System.EventHandler(this.commTxtBox_Exit);
             this.imageLocationTxtBox.Leave += new System.EventHandler(this.imageTxtBox_Exit);
 
-            this.imagePreviewPicBox.DragEnter += new System.Windows.Forms.DragEventHandler(this.pictureBox1_DragEnter);
-            this.imagePreviewPicBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox1_DragDrop);
             this.updateBtn.Click -= this.updateBtn_Click;
             this.deleteBtn.Click -= this.delete_Click;
             this.updateBtn.Click += new System.EventHandler(this.cancelBtn_Click);
@@ -86,29 +84,7 @@ namespace WindowsFormsApp1
             this.imagePreviewPicBox.ImageLocation = cardToEditIfExistent.ElementAt(2);
 
         }
-
-
-        //We're using constructors for this.
-        //That way we're not doing multiple calls before Show.
-        /*
-        //Called when user clicks "Create Commission"
-        public void createCard()
-        {
-            positionNumInput.Visible = false;
-            //Can't delete a card that isn't made yet.
-            deleteBtn.Text = "Cancel";
-            updateBtn.Text = "Create";
-            this.Text = "Create Card";
-        }
-
-        //Called when user clicks on a card.
-        public void updateCard()
-        {
-            commissionerNameTxtBox.ReadOnly = true;
-            deleteBtn.Text = "Delete";
-            updateBtn.Text = "Update";
-            this.Text = "Update Card";
-        }*/
+        
 
         private void pieceName_TextChanged(object sender, EventArgs e)
         {
@@ -127,41 +103,7 @@ namespace WindowsFormsApp1
         {
 
         }
-
-        private void pictureBox1_DragEnter(object sender, DragEventArgs e) {
-            Console.WriteLine("Whoo! We dragged something.");
-
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                e.Effect = DragDropEffects.Copy;
-            }
-            else
-            {
-                e.Effect = DragDropEffects.None;
-            }
-        }
-
-        private void pictureBox1_DragDrop(object sender, DragEventArgs e)
-        {
-            Console.WriteLine("Whoo! We dropped something.");
-
-            bool imageFound = false;
-
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-
-                foreach (string file in files.TakeWhile(j => !imageFound))
-                {
-                    System.IO.FileInfo info = new System.IO.FileInfo(file);
-                    if(info.Extension.ToLower() == ".png" || info.Extension.ToLower() == ".jpg" || info.Extension.ToLower() == ".gif")
-                    {
-                        this.imagePreviewPicBox.ImageLocation = file;
-                        imageFound = true;
-                    }
-                }
-            }
-        }
+        
 
         private void textBox_Enter(object sender, EventArgs e) {
             if (((TextBox)sender).ForeColor == Color.Gray)
