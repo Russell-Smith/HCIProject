@@ -135,7 +135,7 @@ namespace WindowsFormsApp1
                 for (int i = position; i < this.cardList.Count; ++i)
                 {
                     cardList.ElementAt(i).ReducePosition();
-                    this.cardList.ElementAt(i).Location = new System.Drawing.Point(20, 20 + (i * 160));
+                    this.cardList.ElementAt(i).Location = new System.Drawing.Point(20, 20 + (i * 180));
                 }
                 
             } catch (Exception ex) {

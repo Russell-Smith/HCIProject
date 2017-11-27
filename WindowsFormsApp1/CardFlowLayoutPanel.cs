@@ -9,10 +9,6 @@ namespace WindowsFormsApp1
 {
     public class CardFlowLayoutPanel : Panel
     {
-
-        private static int MAX_CARD_SIZE = 320;
-        private static int MID_CARD_SIZE = 240;
-        private static int MIN_CARD_SIZE = 160;
         private PictureBox cardImage;
         private Label piece, commissioner;
 
@@ -102,6 +98,7 @@ namespace WindowsFormsApp1
                 ImageLocation = imgURL,
                 SizeMode = PictureBoxSizeMode.StretchImage
             };
+            this.cardImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 
             this.queuePosition = position;
 

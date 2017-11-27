@@ -441,7 +441,7 @@ namespace WindowsFormsApp1
 
         static string filename = "cardlist.csv";
 
-        static String CSVFile;
+        static String CSVFile = "";
 
         public static void writeFile(List<String> cardList)
         {
