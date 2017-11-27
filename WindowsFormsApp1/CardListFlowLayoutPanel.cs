@@ -146,6 +146,17 @@ namespace WindowsFormsApp1
                 Console.WriteLine("Apparently we had an issue. " + position + " was probably out of bounds.\n" + ex.Message);
             }
         }
+
+        public List<String> WriteQueueToList() {
+            List<String> listToReturn = new List<String>();
+
+            foreach (CardFlowLayoutPanel card in cardList)
+            {
+                listToReturn.Add(card.ConvertToCSV());
+            }
+
+            return listToReturn;
+        }
     }
 }
 

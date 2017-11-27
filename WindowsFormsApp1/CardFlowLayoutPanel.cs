@@ -52,6 +52,17 @@ namespace WindowsFormsApp1
                 TextAlign = System.Drawing.ContentAlignment.MiddleCenter
             };
 
+            this.commissioner.Font = new System.Drawing.Font(this.commissioner.Font, System.Drawing.FontStyle.Bold);
+
+            this.Controls.Add(this.commissioner);
+            this.Controls.Add(this.piece);
+            this.Controls.Add(this.cardImage);
+
+            this.Click += new System.EventHandler(this.CardPanel_Clicked);
+            this.commissioner.Click += new System.EventHandler(this.CardPanel_Clicked);
+            this.piece.Click += new System.EventHandler(this.CardPanel_Clicked);
+            this.cardImage.Click += new System.EventHandler(this.CardPanel_Clicked);
+
             this.Size = new System.Drawing.Size(320, 170);
 
             this.cardImage.Size = new System.Drawing.Size(160, 160);

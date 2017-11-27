@@ -16,7 +16,6 @@ namespace WindowsFormsApp1
         public static CardListFlowLayoutPanel intermediateList;
         public static CardListFlowLayoutPanel bottomList;
         public static List<CardFlowLayoutPanel> completedCards;
-        public static CardFileFactory fileFactory;
         public static CardFactory cardFactory;
 
         public QueueForm()
@@ -24,7 +23,6 @@ namespace WindowsFormsApp1
             topList = new CardListFlowLayoutPanel(0);
             intermediateList = new CardListFlowLayoutPanel(1);
             bottomList = new CardListFlowLayoutPanel(2);
-            fileFactory = new CardFileFactory();
             cardFactory = new CardFactory();
             completedCards = new List<CardFlowLayoutPanel>();
             InitializeComponent();
@@ -59,6 +57,7 @@ namespace WindowsFormsApp1
 
             topList.AddRange(pushToTopList);
 
+            SaveQueues();
         }
 
         //Delete a commission, no incrementing.
@@ -77,11 +76,13 @@ namespace WindowsFormsApp1
                 default:
                     break;
             }
+
+            QueueForm.SaveQueues();
         }
 
-        public static void addCommission(string pieceName, string commissionerName, string note) {
-            bottomList.Add(cardFactory.getCardPanelFromInput(pieceName, commissionerName, 2, note));
-        }
+        //public static void addCommission(string pieceName, string commissionerName, string note) {
+        //    bottomList.Add(cardFactory.getCardPanelFromInput(pieceName, commissionerName, 2, note));
+        //}
 
         public static void addCommissionFromList(List<string> inputList) {
             string cardPieceName = inputList.ElementAt(0);
@@ -113,6 +114,8 @@ namespace WindowsFormsApp1
                     Console.WriteLine("Default reached. Priority is " + cardPriority);
                     break;
             }
+
+            SaveQueues();
         }
 
         //The payload we're having delivered to us will contain information in order:
@@ -157,6 +160,8 @@ namespace WindowsFormsApp1
                         ), Int32.Parse(cardPayload.ElementAt(5)));
                     break;
             }
+
+            SaveQueues();
         }
 
 
@@ -341,6 +346,8 @@ namespace WindowsFormsApp1
                     }
                 }
             }
+
+            SaveQueues();
         }
 
         /*
@@ -369,6 +376,16 @@ namespace WindowsFormsApp1
             this.listContainers.Controls.Add(topList);
             this.listContainers.Controls.Add(intermediateList);
             this.listContainers.Controls.Add(bottomList);
+        }
+
+        private static void SaveQueues() {
+            List<String> fullQueueCardListSet = new List<String>();
+
+            fullQueueCardListSet.AddRange(topList.WriteQueueToList().ToArray());
+            fullQueueCardListSet.AddRange(intermediateList.WriteQueueToList().ToArray());
+            fullQueueCardListSet.AddRange(bottomList.WriteQueueToList().ToArray());
+
+            CardFileFactory.writeFile(fullQueueCardListSet);
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -450,6 +467,8 @@ namespace WindowsFormsApp1
         public static void writeFile(List<String> cardList)
         {
 
+            Console.WriteLine("We're in WriteFile.");
+
             //  Using a CSV file, we will write to delimit values by comma, and objects by newline.
             //  Every string in the file will be wrapped with quotation marks, except the first and last. This should allow MOST commas to no longer affect the file.
             //  Long term, we need to correct this. Basically prepend every input comma with \.
@@ -485,6 +504,7 @@ namespace WindowsFormsApp1
                 String piece, commissioner, imgURL, commissionsFinished, maxCommissions, queuePosition, priorityLevel, note;
 
                 using(System.IO.FileStream fs = System.IO.File.OpenRead(filename)){
+                    Console.WriteLine("{0} - Length of found file.", fs.Length);
                     byte[] b = new byte[fs.Length];
 
                     UTF8Encoding encoder = new UTF8Encoding(true);
@@ -493,39 +513,58 @@ namespace WindowsFormsApp1
 
                     fs.Read(b, 0, b.Length);
                     CSVFull = encoder.GetString(b);
+
+                    Console.WriteLine("{0} - Length of Full CSV.", CSVFull.Length);
+
                     CSVParsed.AddRange(CSVFull.Split('\n'));
+                    Console.WriteLine("{0} - Count of parsed CSV.", CSVParsed.Count);
                     string[] separator = { "\",\"" };
+                    Console.WriteLine("Separator is " + separator[0]);
 
                     foreach(String s in CSVParsed){
-                        String[] cardStrings = s.Split(separator, StringSplitOptions.None);
-                        piece = cardStrings[0];
-                        commissioner = cardStrings[1];
-                        imgURL = cardStrings[2];
-                        commissionsFinished = cardStrings[3];
-                        maxCommissions = cardStrings[4];
-                        queuePosition = cardStrings[5];
-                        priorityLevel = cardStrings[6];
-                        note = cardStrings[7];
+                        String[] cardStrings = s.Split(separator, StringSplitOptions.RemoveEmptyEntries);
 
-                        switch (priorityLevel){
-                            case "0":
-                                cardListArray[0].Add(new CardFlowLayoutPanel(
-                                    piece, commissioner, imgURL, Int32.Parse(commissionsFinished), Int32.Parse(maxCommissions), Int32.Parse(queuePosition),
-                                    Int32.Parse(priorityLevel), note));
-                                break;
-                            case "1":
-                                cardListArray[1].Add(new CardFlowLayoutPanel(
-                                    piece, commissioner, imgURL, Int32.Parse(commissionsFinished), Int32.Parse(maxCommissions), Int32.Parse(queuePosition),
-                                    Int32.Parse(priorityLevel), note));
-                                break;
-                            case "2":
-                                cardListArray[2].Add(new CardFlowLayoutPanel(
-                                    piece, commissioner, imgURL, Int32.Parse(commissionsFinished), Int32.Parse(maxCommissions), Int32.Parse(queuePosition),
-                                    Int32.Parse(priorityLevel), note));
-                                break;
-                            default:
-                                Console.WriteLine("Bad input encountered. CardStrings is " + cardStrings.Length + " elements long!");
-                                break;
+                        if (cardStrings.Length > 1)
+                        {
+                            Console.WriteLine("String parsed. {0} - Length of array.",cardStrings.Length);
+
+                            piece = cardStrings[0];
+                            commissioner = cardStrings[1];
+                            imgURL = cardStrings[2];
+                            commissionsFinished = cardStrings[3];
+                            maxCommissions = cardStrings[4];
+                            queuePosition = cardStrings[5];
+                            priorityLevel = cardStrings[6];
+                            note = cardStrings[7];
+
+                            switch (priorityLevel)
+                            {
+                                case "0":
+                                    cardListArray[0].Add(new CardFlowLayoutPanel(
+                                        piece, commissioner, imgURL, Int32.Parse(commissionsFinished), Int32.Parse(maxCommissions), Int32.Parse(queuePosition),
+                                        Int32.Parse(priorityLevel), note));
+                                    break;
+                                case "1":
+                                    cardListArray[1].Add(new CardFlowLayoutPanel(
+                                        piece, commissioner, imgURL, Int32.Parse(commissionsFinished), Int32.Parse(maxCommissions), Int32.Parse(queuePosition),
+                                        Int32.Parse(priorityLevel), note));
+                                    break;
+                                case "2":
+                                    cardListArray[2].Add(new CardFlowLayoutPanel(
+                                        piece, commissioner, imgURL, Int32.Parse(commissionsFinished), Int32.Parse(maxCommissions), Int32.Parse(queuePosition),
+                                        Int32.Parse(priorityLevel), note));
+                                    break;
+                                default:
+                                    Console.WriteLine("Bad input encountered. CardStrings is " + cardStrings.Length + " elements long!");
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Length of split string is: " + cardStrings.Length);
+
+                            if (cardStrings.Length > 0)
+                            { Console.WriteLine(cardStrings[0]); }
                         }
                     }
                 }
