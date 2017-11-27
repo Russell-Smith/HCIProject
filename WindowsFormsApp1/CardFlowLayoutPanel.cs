@@ -21,12 +21,16 @@ namespace WindowsFormsApp1
         //private float imageXSize, imageYSize;
         private float listXSize;
 
-        // Title, Commissioner, and imageURL are strings passed to visually impact the card.
-        // The commissionsFinished represents the number of commissions the card has been in the queue for.
-        // The position is the plaacement in the queue.
-        // The priority is the queue priority level, from 0 - 2, 0 being highest.
+        //  Title, Commissioner, and imageURL are strings passed to visually impact the card.
+        //  The commissionsFinished represents the number of commissions the card has been in the queue for.
+        //  The position is the plaacement in the queue.
+        //  The priority is the queue priority level, from 0 - 2, 0 being highest.
+        //  This constructor is used for startup card creation from file.
         public CardFlowLayoutPanel(string title, string commissioner, string imageURL, int commissionsFinished, int maxCommissions, int position, int priority, string note)
         {
+
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+
             this.commissionsFinishedCounter = commissionsFinished;
             this.maxFinishedCommissions = maxCommissions;
             this.queuePosition = position;
@@ -46,6 +50,8 @@ namespace WindowsFormsApp1
                 Text = title,
                 TextAlign = System.Drawing.ContentAlignment.MiddleCenter
             };
+
+            this.piece.Font = new System.Drawing.Font(this.piece.Font, System.Drawing.FontStyle.Bold);
 
             this.commissioner = new Label() {
                 Text = commissioner,
@@ -74,43 +80,7 @@ namespace WindowsFormsApp1
 
         }
 
-        //Temporary constructor for use with the CardCreationForm for now.
-        //This fills in NON-FINAL VALUES.
-        //IF THIS IS IN THE FINAL PRESENTATION, WE DUN GOOFED.
-        public CardFlowLayoutPanel(string title, string commissioner, int priority, string note){
-            this.commissionsFinishedCounter = 0;
-            if(priority == 0){
-                this.priorityLevel = 0;
-                this.maxFinishedCommissions = -1;
-            } else {
-                this.priorityLevel = priority;
-                this.maxFinishedCommissions = priority * 5;
-            }
-
-            this.note = note;
-            this.cardImage = new PictureBox{
-                ImageLocation = "blankImage.jpg",
-                SizeMode = PictureBoxSizeMode.StretchImage
-            };
-
-            this.queuePosition = 0;
-
-            this.piece = new Label() {
-                Text = title,
-                TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-            };
-
-            this.commissioner = new Label() {
-                Text = commissioner,
-                TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-            };
-        }
-
-        //Temporary constructor for use with the CardCreationForm for now.
-        //This fills in NON-FINAL VALUES.
-        //IF THIS IS IN THE FINAL PRESENTATION, WE DUN GOOFED.
-        //WE HAVE TWO OF THESE NOW.
-        //I AM A WONDERFUL DEVELOPER.
+        //  Constructor for use with runtime creation.
         public CardFlowLayoutPanel(string title, string commissioner, string imgURL, string note, int priority, int position)
         {
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -174,6 +144,8 @@ namespace WindowsFormsApp1
 
         }
 
+
+        /*
         //This is for testing, and does not represent ANY FORM OF TRUE CARD.
         //Remove this after testing functionality of layout methods.
         public CardFlowLayoutPanel(){
@@ -199,7 +171,7 @@ namespace WindowsFormsApp1
             };
             
             this.BackColor = System.Drawing.Color.Blue;
-        }
+        }*/
 
         /*
             NOTE: Need to keep track of previous X size to know if we are moving towards Min or Max to scale appropriateley
@@ -287,7 +259,10 @@ namespace WindowsFormsApp1
         }
 
         public void ReducePosition() {
-            this.queuePosition -= 1;
+            if (this.queuePosition > 0)
+            {
+                this.queuePosition -= 1;
+            }
         }
 
         public void IncreasePosition() {
@@ -364,8 +339,8 @@ namespace WindowsFormsApp1
         }
 
         public void CardPanel_Clicked(object sender, EventArgs e) {
-            CreateEditCardView updateView = new CreateEditCardView(this.ConvertToList());
-            updateView.Show(this);
+                CreateEditCardView updateView = new CreateEditCardView(this.ConvertToList());
+                updateView.ShowDialog(this);
         }
     }
 }

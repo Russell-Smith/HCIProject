@@ -47,8 +47,11 @@ namespace WindowsFormsApp1
             foreach(CardFlowLayoutPanel card in cardList){
                 if (card.IncrementCommissionsFinished()){
                     outputList.Add(card);
-                    this.cardList.Remove(card);
                 }
+            }
+            foreach (CardFlowLayoutPanel card in outputList)
+            {
+                this.cardList.Remove(card);
             }
 
             return outputList;
@@ -64,7 +67,7 @@ namespace WindowsFormsApp1
             {
                 this.cardList.ElementAt(i).SetPosition(i);
                 this.cardList.ElementAt(i).SetPriority(priority);
-                this.cardList.ElementAt(i).Location = new System.Drawing.Point(20, 20 + (i * 160));
+                this.cardList.ElementAt(i).Location = new System.Drawing.Point(20, 20 + (i * 180));
             }
         }
 
@@ -72,7 +75,7 @@ namespace WindowsFormsApp1
             this.cardList.Add(inputCard);
             this.Controls.Add(inputCard);
             inputCard.SetPosition(this.cardList.Count - 1);
-            inputCard.Location = new System.Drawing.Point(20, 20 + (inputCard.GetPosition() * 160));
+            inputCard.Location = new System.Drawing.Point(20, 20 + (inputCard.GetPosition() * 180));
             inputCard.BackColor = System.Drawing.Color.Black;
             inputCard.Visible = true;
             
@@ -92,7 +95,8 @@ namespace WindowsFormsApp1
                 int i = 0;
                 foreach (CardFlowLayoutPanel card in cardList)
                 {
-                    card.Location = new System.Drawing.Point(20, 20 + (i * 160));
+                    card.Location = new System.Drawing.Point(20, 20 + (i * 180));
+                    card.SetPosition(i);
                     i += 1;
                 }
             }
@@ -102,7 +106,7 @@ namespace WindowsFormsApp1
                 cardList.Add(inputCard);
                 this.Controls.Add(inputCard);
                 inputCard.SetPosition(cardList.Count - 1);
-                inputCard.Location = new System.Drawing.Point(20, 20 + (inputCard.GetPosition() * 160));
+                inputCard.Location = new System.Drawing.Point(20, 20 + (inputCard.GetPosition() * 180));
                 inputCard.Visible = true;
             }
         }
@@ -110,7 +114,7 @@ namespace WindowsFormsApp1
         //  Move a card that already exists, then increment every card behind it's location.
         public void MoveCard(int oldIndex, int newIndex) {
             CardFlowLayoutPanel tempCard = cardList.ElementAt(oldIndex);
-            if (newIndex > cardList.Count)
+            if (newIndex > cardList.Count - 1)
             {
                 cardList.RemoveAt(oldIndex);
                 cardList.Add(tempCard);
@@ -125,7 +129,7 @@ namespace WindowsFormsApp1
             for (int i = 0; i < cardList.Count; ++i)
             {
                 this.cardList.ElementAt(i).SetPosition(i);
-                this.cardList.ElementAt(i).Location = new System.Drawing.Point(20, 20 + (i * 160));
+                this.cardList.ElementAt(i).Location = new System.Drawing.Point(20, 20 + (i * 180));
             }
         }
 

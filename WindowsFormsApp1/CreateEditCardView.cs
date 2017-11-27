@@ -16,10 +16,6 @@ namespace WindowsFormsApp1
         //The card handed to us, if it exists, in List Form - no need to hand a UI element with it.
         List<String> cardToEditIfExistent;
 
-        //Input storage variables
-        private string pieceNameIn, commissionerNameIn, imgRootDirIn, noteIn;
-        private int priorityIn, positionIn;
-
         //Default constructor assumes that we are looking at creating a new card.
         //Ironically, we change default values. Huh.
         public CreateEditCardView()
@@ -60,6 +56,8 @@ namespace WindowsFormsApp1
             this.deleteBtn.Click += new System.EventHandler(this.clear_Click);
             this.finishBtn.Click -= this.finish_Click;
             this.finishBtn.Click += new System.EventHandler(this.createBtn_Click);
+            this.CancelButton.Hide();
+            this.CancelButton.Dispose();
 
         }
 
@@ -72,8 +70,6 @@ namespace WindowsFormsApp1
 
             cardToEditIfExistent = cardToEdit;
 
-            this.imagePreviewPicBox.DragEnter += new System.Windows.Forms.DragEventHandler(this.pictureBox1_DragEnter);
-            this.imagePreviewPicBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox1_DragDrop);
             this.commissionerNameTxtBox.ReadOnly = true;
             this.pieceNameTxtBox.Text = cardToEditIfExistent.ElementAt(0);
             this.commissionerNameTxtBox.Text = cardToEditIfExistent.ElementAt(1);
@@ -211,10 +207,17 @@ namespace WindowsFormsApp1
                 {
                     unfilledInputs = "You've updated the following items:" + unfilledInputs + "\n\nContinue?";
 
-                    DialogResult result = MessageBox.Show(this, unfilledInputs, "Are you sure?", MessageBoxButtons.YesNo);
-
-                    if (result == System.Windows.Forms.DialogResult.Yes)
+                    if (Properties.Settings.Default.showConfirmationOnFinish)
                     {
+                        DialogResult result = MessageBox.Show(this, unfilledInputs, "Are you sure?", MessageBoxButtons.YesNo);
+
+                        if (result == System.Windows.Forms.DialogResult.Yes)
+                        {
+                            QueueForm.updateCommission(newCard, oldCard);
+                            this.Close();
+                            this.Dispose();
+                        }
+                    } else {
                         QueueForm.updateCommission(newCard, oldCard);
                         this.Close();
                         this.Dispose();
@@ -313,7 +316,9 @@ namespace WindowsFormsApp1
         //Will cache the card as completed and all other cards will need to increment.
         private void finish_Click(object sender, EventArgs e)
         {
-            
+            QueueForm.finishCommission(Int32.Parse(this.cardToEditIfExistent.ElementAt(4)), Int32.Parse(this.cardToEditIfExistent.ElementAt(3)));
+            this.Close();
+            this.Dispose();
         }
 
         //  Will delete the card from the layout panel and not increment all other cards
@@ -339,59 +344,10 @@ namespace WindowsFormsApp1
 
         }
 
-        /*
-        private void createUpdate_Click(object sender, EventArgs e)
-        {   
-            //If the creation menu is up, create a new card object
-            if (this.Text == "Create Card")
-            {
-                this.pieceNameIn = pieceNameTxtBox.Text;
-                this.commissionerNameIn = commissionerNameTxtBox.Text;
-                this.imgRootDirIn = imageLocationTxtBox.Text;
-                this.noteIn = noteTxtBox.Text;
-
-                this.priorityIn = Convert.ToInt32(priorityDropDown.SelectedValue);
-
-                //All necessary fields must be filled
-                if (!hasPieceName || !hasCommissionerName || !hasImgRootDir || !hasPriority)
-                {
-                    string message = "The following items need to be entered:";
-
-                    if (!hasPieceName) {
-                        message += "\nPiece Name";
-                    }
-                    if (!hasCommissionerName)
-                    {
-                        message += "\nCommissioner Name";
-                    }
-                    if (!hasImgRootDir)
-                    {
-                        message += "\nImage Directory";
-                    }
-                    if (!hasPriority)
-                    {
-                        message += "\nPriority";
-                    }
-                    //Display what info is missing.
-                    MessageBox.Show(message, "Form Incomplete", MessageBoxButtons.OK);
-                }
-                else
-                {
-                    CreateCard newCard = new CreateCard(pieceNameIn, commissionerNameIn, imgRootDirIn, noteIn, priorityIn);
-                }
-            }
-            else
-            {   
-                //Will need to make sure that they do not leave fields blank
-                this.pieceNameIn = pieceNameTxtBox.Text;
-                this.imgRootDirIn = imageLocationTxtBox.Text;
-                this.noteIn = noteTxtBox.Text;
-
-                this.priorityIn = Convert.ToInt32(priorityDropDown.SelectedValue);
-                this.positionIn = Convert.ToInt32(positionNumInput.Value);
-
-                EditCard updateCard = new EditCard(this.pieceNameIn, this.imgRootDirIn, this.noteIn, this.priorityIn, this.positionIn);
-            }
-        }*/
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            this.Dispose();
+        }
     }
 }

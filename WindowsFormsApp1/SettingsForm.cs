@@ -13,7 +13,6 @@ namespace WindowsFormsApp1 {
         public SettingsForm() {
             InitializeComponent();
             alwaysOnTopChkBox.Checked = Properties.Settings.Default.alwaysOnTop;
-            darkModeChkBox.Checked = Properties.Settings.Default.darkMode;
             confirmDialogChkBox.Checked = Properties.Settings.Default.showConfirmationOnFinish;
         }
 
@@ -24,16 +23,20 @@ namespace WindowsFormsApp1 {
             this.Owner.TopMost = Properties.Settings.Default.alwaysOnTop;
             Properties.Settings.Default.Save();
             alwaysOnTopChkBox.Checked = Properties.Settings.Default.alwaysOnTop;
-            darkModeChkBox.Checked = Properties.Settings.Default.darkMode;
             confirmDialogChkBox.Checked = Properties.Settings.Default.showConfirmationOnFinish;
         }
 
         private void finishBtn_Click(object sender, EventArgs e) {
             Properties.Settings.Default.alwaysOnTop = alwaysOnTopChkBox.Checked;
-            Properties.Settings.Default.darkMode = darkModeChkBox.Checked;
             Properties.Settings.Default.showConfirmationOnFinish = confirmDialogChkBox.Checked;
             this.Owner.TopMost = Properties.Settings.Default.alwaysOnTop;
             Properties.Settings.Default.Save();
+            this.Close();
+        }
+
+        private void confirmDialogChkBox_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

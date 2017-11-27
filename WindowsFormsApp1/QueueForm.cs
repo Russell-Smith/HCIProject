@@ -27,6 +27,10 @@ namespace WindowsFormsApp1
             completedCards = new List<CardFlowLayoutPanel>();
             InitializeComponent();
             this.TopMost = Properties.Settings.Default.alwaysOnTop;
+            this.MinimumSize = this.Size;
+            this.MaximumSize = new Size(1143, 900);
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
         }
 
         //  Once a commission is finished, all cards will increment by one
@@ -423,13 +427,13 @@ namespace WindowsFormsApp1
         private void createCardBtn_Click(object sender, EventArgs e)
         {
             CreateEditCardView createForm = new CreateEditCardView();
-            createForm.Show(this);
+            createForm.ShowDialog(this);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             SettingsForm settings = new SettingsForm();
-            settings.Show(this);
+            settings.ShowDialog(this);
         }
 
     }
@@ -510,7 +514,7 @@ namespace WindowsFormsApp1
 
                     foreach (String s in CSVParsed)
                     {
-                        String[] cardStrings = s.Split(separator, StringSplitOptions.RemoveEmptyEntries);
+                        String[] cardStrings = s.Split(separator, StringSplitOptions.None);
 
                         if (cardStrings.Length > 1)
                         {
@@ -565,6 +569,7 @@ namespace WindowsFormsApp1
             return cardListArray;
         }
 
+        /*
         public CardFlowLayoutPanel getCardPanelFromInput(string title, string commissioner, string imageURL, int commissionsFinished, int maxCommissions, int position, int priority, string note)
         {
             return new CardFlowLayoutPanel(title, commissioner, imageURL, commissionsFinished, maxCommissions, position, priority, note);
@@ -574,6 +579,7 @@ namespace WindowsFormsApp1
         {
             return new CardFlowLayoutPanel(title, commissioner, priority, note);
         }
+        */
 
         public CardFlowLayoutPanel getCardPanelFromInput(string title, string commissioner, string imageURL, string note, int priority, int position)
         {
