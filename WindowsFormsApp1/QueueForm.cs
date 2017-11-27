@@ -397,12 +397,6 @@ namespace WindowsFormsApp1
 
         }
 
-        override protected void OnResize(EventArgs e)
-        {
-            base.OnResize(e);
-
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
             Button senderBtn = (Button)sender;

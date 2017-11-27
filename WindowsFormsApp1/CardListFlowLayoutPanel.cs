@@ -27,14 +27,6 @@ namespace WindowsFormsApp1
             this.AutoScroll = true;
         }
 
-        public void OnParentResize(int newXSize, int newYSize){
-            newXSize = newXSize - 20;
-            newYSize = newYSize - 20;
-            foreach(CardFlowLayoutPanel card in cardList){
-                card.OnParentResize(newXSize);
-            }
-        }
-
         public List<CardFlowLayoutPanel> CardIncrement(){
 
             if (cardList.Count == 0){
