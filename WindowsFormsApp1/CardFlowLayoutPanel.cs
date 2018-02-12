@@ -19,7 +19,7 @@ namespace WindowsFormsApp1
 
         //  Title, Commissioner, and imageURL are strings passed to visually impact the card.
         //  The commissionsFinished represents the number of commissions the card has been in the queue for.
-        //  The position is the plaacement in the queue.
+        //  The position is the placement in the queue.
         //  The priority is the queue priority level, from 0 - 2, 0 being highest.
         //  This constructor is used for startup card creation from file.
         public CardFlowLayoutPanel(string title, string commissioner, string imageURL, int commissionsFinished, int maxCommissions, int position, int priority, string note)
@@ -199,7 +199,7 @@ namespace WindowsFormsApp1
         {
             String CSVOutput;
 
-            //We're outputting a CSV file to
+            //We're outputting a CSV file to write to disk.
             CSVOutput = this.piece.Text + "\",\"" + this.commissioner.Text + "\",\"" + 
                             this.cardImage.ImageLocation + "\",\"" + this.commissionsFinishedCounter.ToString() +
                             "\",\"" + this.maxFinishedCommissions.ToString() + "\",\"" + queuePosition.ToString() + "\",\"" + priorityLevel.ToString() + "\",\"" + note;

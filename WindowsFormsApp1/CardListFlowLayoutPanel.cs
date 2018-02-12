@@ -117,7 +117,7 @@ namespace WindowsFormsApp1
                 cardList.Insert(newIndex, tempCard);
             }
             //  This currently increases positions of all cards behind a card. Let's just index them all to the list.
-            //  It's slow. It's literally n. Fuck it.
+            //  It's slow. It's literally n.
             for (int i = 0; i < cardList.Count; ++i)
             {
                 this.cardList.ElementAt(i).SetPosition(i);

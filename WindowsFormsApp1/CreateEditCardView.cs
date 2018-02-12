@@ -149,6 +149,7 @@ namespace WindowsFormsApp1
         //  Old Card Format: PieceName, CommissionerName, CardImageLocation, QueuePosition, QueuePriority, Note
         //  New List Format: PieceName, CardImageLocation, Note, QueuePosition, QueuePriority
         // ###In Code Review### Reform all lists to have similar structure, with most commonly used information at front.
+        // ###Further review### Adjust as necessary to prevent reupdating and write calls. They're wasted when you haven't changed anything.
         private void updateBtn_Click(object sender, EventArgs e)
         {
             string unfilledInputs = "";
