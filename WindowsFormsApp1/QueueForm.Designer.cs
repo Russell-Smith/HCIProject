@@ -41,7 +41,7 @@
             this.createCardBtn.Name = "createCardBtn";
             this.createCardBtn.Size = new System.Drawing.Size(110, 25);
             this.createCardBtn.TabIndex = 0;
-            this.createCardBtn.Text = "Create Commission";
+            this.createCardBtn.Text = "&Create Commission";
             this.createCardBtn.UseVisualStyleBackColor = true;
             this.createCardBtn.Click += new System.EventHandler(this.createCardBtn_Click);
             // 
@@ -51,7 +51,7 @@
             this.showQueueBtn.Name = "showQueueBtn";
             this.showQueueBtn.Size = new System.Drawing.Size(110, 25);
             this.showQueueBtn.TabIndex = 1;
-            this.showQueueBtn.Text = "Show All Queues";
+            this.showQueueBtn.Text = "Show All &Queues";
             this.showQueueBtn.UseVisualStyleBackColor = true;
             this.showQueueBtn.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -68,7 +68,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 25);
             this.button1.TabIndex = 3;
-            this.button1.Text = "Settings";
+            this.button1.Text = "&Settings";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 

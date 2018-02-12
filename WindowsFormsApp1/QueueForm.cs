@@ -379,7 +379,7 @@ namespace WindowsFormsApp1
             fullQueueCardListSet.AddRange(intermediateList.WriteQueueToList().ToArray());
             fullQueueCardListSet.AddRange(bottomList.WriteQueueToList().ToArray());
 
-            CardFileFactory.writeFile(fullQueueCardListSet);
+            CardFileWriter.writeFile(fullQueueCardListSet);
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -400,11 +400,11 @@ namespace WindowsFormsApp1
         private void button2_Click(object sender, EventArgs e)
         {
             Button senderBtn = (Button)sender;
-            if (senderBtn.Text == "Show All Queues")
+            if (senderBtn.Text == "Show All &Queues")
             {
                 this.Size = new Size(1143, 900);
                 listContainers.Size = new Size(1100, 800);
-                senderBtn.Text = "Hide Additional Queues";
+                senderBtn.Text = "Hide &Queues";
                 intermediateList.Visible = true;
                 bottomList.Visible = true;
             }
@@ -412,7 +412,7 @@ namespace WindowsFormsApp1
             {
                 this.Size = new Size(400, 900);
                 listContainers.Size = new Size(360, 800);
-                senderBtn.Text = "Show All Queues";
+                senderBtn.Text = "Show All &Queues";
                 intermediateList.Visible = false;
                 bottomList.Visible = false;
             }
@@ -435,8 +435,8 @@ namespace WindowsFormsApp1
     //used to create a file that stores all of the information held by the cards
     //Cards will always follow the following format:
     //[commissionerName] [pieceName] [imgRootDir] [note] [price] [priority] [initialPriority] 
-    //  [queuePosition] [completionCounter] [maxCompletionCounter] \t\n
-    public class CardFileFactory
+    //  [queuePosition] [completionCounter] [maxCompletionCounter] \r\n
+    public class CardFileWriter
     {
 
         static string filename = "cardlist.csv";
@@ -448,13 +448,13 @@ namespace WindowsFormsApp1
 
             Console.WriteLine("We're in WriteFile.");
 
-            //  Using a CSV file, we will write to delimit values by comma, and objects by newline.
+            //  Using a CSV file, we will write to delimit values by comma, and objects by carriage return and linefeed.
             //  Every string in the file will be wrapped with quotation marks, except the first and last. This should allow MOST commas to no longer affect the file.
             //  Long term, we need to correct this. Basically prepend every input comma with \.
             //  Our separator is now "," - not the comma character. However, Quote-Comma-Quote Separated Values is less catchy. QCQSV?
             foreach (String s in cardList)
             {
-                CSVFile += s + "\n";
+                CSVFile += s + "\r\n";
             }
 
             using (System.IO.FileStream fs = System.IO.File.Create(filename))
@@ -468,7 +468,7 @@ namespace WindowsFormsApp1
 
     //Cards will always follow the following format from the file:
     //[commissionerName] [pieceName] [imgRootDir] [note] [price] [priority] [initialPriority] 
-    //  [queuePosition] [completionCounter] [maxCompletionCounter] \n
+    //  [queuePosition] [completionCounter] [maxCompletionCounter] \r\n
     public class CardFactory
     {
 
@@ -494,6 +494,7 @@ namespace WindowsFormsApp1
 
                     UTF8Encoding encoder = new UTF8Encoding(true);
                     String CSVFull = "";
+                    String[] fullSeparator = { "\r\n" };
                     List<String> CSVParsed = new List<String>();
 
                     fs.Read(b, 0, b.Length);
@@ -501,7 +502,7 @@ namespace WindowsFormsApp1
 
                     Console.WriteLine("{0} - Length of Full CSV.", CSVFull.Length);
 
-                    CSVParsed.AddRange(CSVFull.Split('\n'));
+                    CSVParsed.AddRange(CSVFull.Split(fullSeparator, StringSplitOptions.None));
                     Console.WriteLine("{0} - Count of parsed CSV.", CSVParsed.Count);
                     string[] separator = { "\",\"" };
                     Console.WriteLine("Separator is " + separator[0]);

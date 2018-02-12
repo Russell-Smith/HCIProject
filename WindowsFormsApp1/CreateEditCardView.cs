@@ -316,9 +316,26 @@ namespace WindowsFormsApp1
         //Will cache the card as completed and all other cards will need to increment.
         private void finish_Click(object sender, EventArgs e)
         {
-            QueueForm.finishCommission(Int32.Parse(this.cardToEditIfExistent.ElementAt(4)), Int32.Parse(this.cardToEditIfExistent.ElementAt(3)));
-            this.Close();
-            this.Dispose();
+
+            if (Properties.Settings.Default.showConfirmationOnFinish)
+            {
+                DialogResult result = MessageBox.Show(this, "This will finish this commission from the queue, marking it completed.", "Are you sure?", MessageBoxButtons.YesNo);
+
+                if (result == System.Windows.Forms.DialogResult.Yes)
+                {
+                    QueueForm.finishCommission(Int32.Parse(this.cardToEditIfExistent.ElementAt(4)), Int32.Parse(this.cardToEditIfExistent.ElementAt(3)));
+                    this.Close();
+                    this.Dispose();
+                }
+            }
+            else
+            {
+                QueueForm.finishCommission(Int32.Parse(this.cardToEditIfExistent.ElementAt(4)), Int32.Parse(this.cardToEditIfExistent.ElementAt(3)));
+                this.Close();
+                this.Dispose();
+            }
+
+
         }
 
         //  Will delete the card from the layout panel and not increment all other cards
@@ -326,9 +343,24 @@ namespace WindowsFormsApp1
         //  No? Who'd've thunk it!
         private void delete_Click(object sender, EventArgs e)
         {
-            QueueForm.deleteCommission(Int32.Parse(cardToEditIfExistent.ElementAt(4)), Int32.Parse(cardToEditIfExistent.ElementAt(3)));
-            this.Close();
-            this.Dispose();
+
+            if (Properties.Settings.Default.showConfirmationOnFinish)
+            {
+                DialogResult result = MessageBox.Show(this, "This will delete this commission from the queue, making it unrecoverable.", "Are you sure?", MessageBoxButtons.YesNo);
+
+                if (result == System.Windows.Forms.DialogResult.Yes)
+                {
+                    QueueForm.deleteCommission(Int32.Parse(cardToEditIfExistent.ElementAt(4)), Int32.Parse(cardToEditIfExistent.ElementAt(3)));
+                    this.Close();
+                    this.Dispose();
+                }
+            }
+            else
+            {
+                QueueForm.deleteCommission(Int32.Parse(cardToEditIfExistent.ElementAt(4)), Int32.Parse(cardToEditIfExistent.ElementAt(3)));
+                this.Close();
+                this.Dispose();
+            }
         }
 
         private void clear_Click(object sender, EventArgs e) {
